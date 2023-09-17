@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v2.3.1">
+<title data-rh="true">iter | iter</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://chriscerie.github.io/iter/api/iter"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="iter | iter"><link data-rh="true" rel="canonical" href="https://chriscerie.github.io/iter/api/iter"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="en"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="x-default"><link rel="stylesheet" href="/iter/assets/css/styles.19a5646f.css">
+<link rel="preload" href="/iter/assets/js/runtime~main.7f97447d.js" as="script">
+<link rel="preload" href="/iter/assets/js/main.00dbe645.js" as="script">
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
+<div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/iter/"><b class="navbar__title text--truncate">iter</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/iter/api/">API</a><a class="navbar__item navbar__link" href="/iter/changelog">Changelog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Press S to Search..." aria-label="Search" class="navbar__search-input search-bar"></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/iter/api/iter">iter</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">iter</span></h1><div class="luaClassTags_EipM"></div><div></div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="all"><code style="text-decoration:none">all</code><a href="#all" class="hash-link" aria-label="Direct link to all" title="Direct link to all">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L95"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">all</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Tests if every element of the iterator matches a predicate.</p>
+<p>
+  <code>all()</code> takes a closure that returns true or false. It applies this closure
+  to each element of the iterator, and if they all return true, then so does
+  all(). If any of them return false, it returns false.
+</p>
+<p>
+  <code>all()</code> is short-circuiting; in other words, it will stop processing as soon
+  as it finds a false, given that no matter what else happens, the result will
+  also be false.
+</p>
+<p>An empty iterator returns true.</p>
+<h1>Examples</h1>
+<p>Basic usage:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">iter</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> x <span class="token operator">></span> <span class="token number">0</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token function">iter</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> x <span class="token operator">></span> <span class="token number">2</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Stopping at the first false:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> iterator <span class="token operator">=</span> <span class="token function">iter</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">not</span> iterator<span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> x <span class="token operator">~=</span> <span class="token number">2</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- we can still use `iter`, as there are more elements.</span>
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">next</span><span class="token punctuation">(</span>iterator<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="any"><code style="text-decoration:none">any</code><a href="#any" class="hash-link" aria-label="Direct link to any" title="Direct link to any">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L149"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">any</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Tests if any element of the iterator matches a predicate.</p>
+<p>
+  <code>any()</code> takes a function that returns <code>true</code> or <code>false</code>. It applies this
+  function to each element of the iterator, and if any of them return
+  <code>true</code>, then so does <code>any()</code>. If they all return <code>false</code>, it returns <code>false</code>.
+</p>
+<p>
+  <code>any()</code> is short-circuiting; in other words, it will stop processing
+  as soon as it finds a true, given that no matter what else happens,
+  the result will also be true.
+</p>
+<p>An empty iterator returns <code>false</code>.</p>
+<h1>Examples</h1>
+<p>Basic usage:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">iter</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> x <span class="token operator">></span> <span class="token number">0</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">not</span> <span class="token function">iter</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> x <span class="token operator">></span> <span class="token number">5</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Stopping at the first true:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> iterator <span class="token operator">=</span> <span class="token function">iter</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">not</span> iterator<span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> x <span class="token operator">~=</span> <span class="token number">2</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- we can still use `iter`, as there are more elements.</span>
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">next</span><span class="token punctuation">(</span>iterator<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="count"><code style="text-decoration:none">count</code><a href="#count" class="hash-link" aria-label="Direct link to count" title="Direct link to count">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L166"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">count</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Consumes the iterator, counting the number of iterations and returning it.</p>
+<p>
+  This method will call [<code>next</code>] repeatedly until <code>nil</code> is encountered, returning the
+  number of times it saw values. Note that [<code>next</code>] has to be called at least once even
+  if the iterator does not have any elements.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="collect"><code style="text-decoration:none">collect</code><a href="#collect" class="hash-link" aria-label="Direct link to collect" title="Direct link to collect">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L185"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">collect</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Transforms an iterator into a table.</p>
+<p>
+  <code>collect()</code> can take anything iterable, and turn it into a relevant table.
+  This is one of the more powerful methods in the standard library, used in a variety of contexts.
+</p>
+<p>
+  The most basic pattern in which <code>collect()</code> is used is to turn one table into
+  another. You take a table, call [<code>iter</code>] on it, do a bunch of transformations,
+  and then <code>collect()</code> at the end.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="enumerate"><code style="text-decoration:none">enumerate</code><a href="#enumerate" class="hash-link" aria-label="Direct link to enumerate" title="Direct link to enumerate">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L224"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">enumerate</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Creates an iterator which gives the current iteration count as well as the next value.</p>
+<p>
+  The iterator returned yields pairs <code>(i, val)</code> for arrays and <code>(i, key, val)</code> for dicts,
+  where i is the current index of iteration.
+</p>
+<h1>Examples</h1>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> iterator <span class="token operator">=</span> <span class="token function">array</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">enumerate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"a"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"b"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"c"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">nil</span>
+
+<span class="token keyword">local</span> b <span class="token operator">=</span> <span class="token punctuation">{</span>
+	akey <span class="token operator">=</span> <span class="token string">'a'</span><span class="token punctuation">,</span>
+	bkey <span class="token operator">=</span> <span class="token string">'b'</span><span class="token punctuation">,</span>
+	ckey <span class="token operator">=</span> <span class="token string">'c'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+iterator <span class="token operator">=</span> <span class="token function">dict</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">enumerate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"akey"</span><span class="token punctuation">,</span> <span class="token string">"a"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"bkey"</span><span class="token punctuation">,</span> <span class="token string">"b"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"ckey"</span><span class="token punctuation">,</span> <span class="token string">"c"</span>
+<span class="token function">print</span><span class="token punctuation">(</span>iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">nil</span>
+</code></pre>
+<h1>Deviations</h1>
+<ul>
+  <li>For dicts, the iterator returned yields tuples <code>(i, key, val)</code></li>
+  <li>Indexing starts at 1</li>
+</ul>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="last"><code style="text-decoration:none">last</code><a href="#last" class="hash-link" aria-label="Direct link to last" title="Direct link to last">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L246"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">last</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+<p>Consumes the iterator, returning the last element.</p>
+<p>
+  For non-arrays, this method will evaluate the iterator until it returns <code>nil</code>.
+  While doing so, it keeps track of the current element. After <code>nil</code> is returned,
+  <code>last()</code> will then return the last element it saw.
+</p>
+<h1>Examples</h1>
+<p>Basic usage:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">array</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">array</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapWhile"><code style="text-decoration:none">mapWhile</code><a href="#mapWhile" class="hash-link" aria-label="Direct link to mapWhile" title="Direct link to mapWhile">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L271"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">mapWhile</code><code>(</code><code>transformer<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Creates an iterator that both yields elements based on a predicate and maps.</p>
+<p>
+  <code>mapWhile()</code> takes a function as an argument. It will call this function on each element
+  of the iterator, and yield elements while it returns non-nil.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="filter"><code style="text-decoration:none">filter</code><a href="#filter" class="hash-link" aria-label="Direct link to filter" title="Direct link to filter">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L297"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">filter</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Creates an iterator which uses a closure to determine if an element should be yielded.</p>
+<p>
+  Given an element the closure must return true or false. The returned iterator will yield
+  only the elements for which the closure returns true.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="forEach"><code style="text-decoration:none">forEach</code><a href="#forEach" class="hash-link" aria-label="Direct link to forEach" title="Direct link to forEach">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/master/src/init.lua#L338"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">forEach</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Calls a closure on each element of an iterator.</p>
+<p>
+  This is equivalent to using a for loop on the iterator, although break
+  and continue are not possible from a closure. It's generally more idiomatic
+  to use a for loop, but for_each may be more legible when processing items at
+  the end of longer iterator chains.
+</p>
+<p>
+  #Examples
+  Basic usage:
+</p>
+<pre class="language-lua"><code class="language-lua">tb<span class="token punctuation">.</span><span class="token function">array</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token punctuation">:</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> number<span class="token punctuation">)</span>
+		<span class="token keyword">return</span> x <span class="token operator">*</span> <span class="token number">100</span>
+	<span class="token keyword">end</span><span class="token punctuation">)</span>
+	<span class="token punctuation">:</span><span class="token function">enumerate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">:</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>i<span class="token punctuation">:</span> number<span class="token punctuation">,</span> x<span class="token punctuation">:</span> number<span class="token punctuation">)</span>
+		<span class="token keyword">return</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> x<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span>
+	<span class="token keyword">end</span><span class="token punctuation">)</span>
+	<span class="token punctuation">:</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>i<span class="token punctuation">:</span> number<span class="token punctuation">,</span> x<span class="token punctuation">:</span> number<span class="token punctuation">)</span>
+		<span class="token function">print</span><span class="token punctuation">(</span>`<span class="token punctuation">{</span>i<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token punctuation">{</span>x<span class="token punctuation">}</span>`<span class="token punctuation">)</span>
+	<span class="token keyword">end</span><span class="token punctuation">)</span>
+</code></pre>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;all&quot;,
+            &quot;desc&quot;: &quot;Tests if every element of the iterator matches a predicate.\n\n`all()` takes a closure that returns true or false. It applies this closure\nto each element of the iterator, and if they all return true, then so does\nall(). If any of them return false, it returns false.\n\n`all()` is short-circuiting; in other words, it will stop processing as soon\nas it finds a false, given that no matter what else happens, the result will\nalso be false.\n\nAn empty iterator returns true.\n\n# Examples\n\nBasic usage:\n\n```lua\nlocal a = {1, 2, 3}\n\nassert(iter(a):all(function(x)\n\treturn x &gt; 0\nend))\n\nassert(not iter(a):all(function(x)\n\treturn x &gt; 2\nend))\n```\n\nStopping at the first false:\n\n```lua\nlocal a = {1, 2, 3}\n\nlocal iterator = iter(a)\n\nassert(not iterator:all(function(x)\n\treturn x ~= 2\nend))\n\n-- we can still use `iter`, as there are more elements.\nassert(next(iterator) == 3)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;predicate&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(...any) -&gt; boolean&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 95,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;any&quot;,
+            &quot;desc&quot;: &quot;Tests if any element of the iterator matches a predicate.\n\n`any()` takes a function that returns `true` or `false`. It applies this\nfunction to each element of the iterator, and if any of them return\n`true`, then so does `any()`. If they all return `false`, it returns `false`.\n\n`any()` is short-circuiting; in other words, it will stop processing\nas soon as it finds a true, given that no matter what else happens,\nthe result will also be true.\n\nAn empty iterator returns `false`.\n\n# Examples\n\nBasic usage:\n\n```lua\nlocal a = {1, 2, 3}\n\nassert(iter(a):all(function(x)\n\treturn x &gt; 0\nend))\n\nassert(not iter(a):all(function(x)\n\treturn x &gt; 5\nend))\n```\n\nStopping at the first true:\n\n```lua\nlocal a = {1, 2, 3}\n\nlocal iterator = iter(a)\n\nassert(not iterator:all(function(x)\n\treturn x ~= 2\nend))\n\n-- we can still use `iter`, as there are more elements.\nassert(next(iterator) == 2)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;predicate&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(...any) -&gt; boolean&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 149,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;count&quot;,
+            &quot;desc&quot;: &quot;Consumes the iterator, counting the number of iterations and returning it.\n\nThis method will call [`next`] repeatedly until `nil` is encountered, returning the\nnumber of times it saw values. Note that [`next`] has to be called at least once even\nif the iterator does not have any elements.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 166,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;collect&quot;,
+            &quot;desc&quot;: &quot;Transforms an iterator into a table.\n\n`collect()` can take anything iterable, and turn it into a relevant table.\nThis is one of the more powerful methods in the standard library, used in a variety of contexts.\n\nThe most basic pattern in which `collect()` is used is to turn one table into\nanother. You take a table, call [`iter`] on it, do a bunch of transformations,\nand then `collect()` at the end.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 185,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;enumerate&quot;,
+            &quot;desc&quot;: &quot;Creates an iterator which gives the current iteration count as well as the next value.\n\nThe iterator returned yields pairs `(i, val)` for arrays and `(i, key, val)` for dicts,\nwhere i is the current index of iteration.\n\n# Examples\n```lua\nlocal a = {&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;}\n\nlocal iterator = array(a).enumerate()\n\nprint(iterator:next()) -&gt; 1, \&quot;a\&quot;\nprint(iterator:next()) -&gt; 2, \&quot;b\&quot;\nprint(iterator:next()) -&gt; 3, \&quot;c\&quot;\nprint(iterator:next()) -&gt; nil\n\nlocal b = {\n\takey = &#x27;a&#x27;,\n\tbkey = &#x27;b&#x27;,\n\tckey = &#x27;c&#x27;,\n}\n\niterator = dict(b).enumerate()\n\nprint(iterator:next()) -&gt; 1, \&quot;akey\&quot;, \&quot;a\&quot;\nprint(iterator:next()) -&gt; 2, \&quot;bkey\&quot;, \&quot;b\&quot;\nprint(iterator:next()) -&gt; 3, \&quot;ckey\&quot;, \&quot;c\&quot;\nprint(iterator:next()) -&gt; nil\n```\n\n# Deviations\n* For dicts, the iterator returned yields tuples `(i, key, val)`\n* Indexing starts at 1&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 224,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;last&quot;,
+            &quot;desc&quot;: &quot;Consumes the iterator, returning the last element.\n\nFor non-arrays, this method will evaluate the iterator until it returns `nil`.\nWhile doing so, it keeps track of the current element. After `nil` is returned,\n`last()` will then return the last element it saw.\n\n# Examples\nBasic usage:\n\n```lua\nlocal a = {1, 2, 3};\nassert(array(a).last() == 3);\n\nlocal a = {1, 2, 3, 4, 5};\nassert(array(a).last() == 5);\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any\r\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 246,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;mapWhile&quot;,
+            &quot;desc&quot;: &quot;Creates an iterator that both yields elements based on a predicate and maps.\n\n`mapWhile()` takes a function as an argument. It will call this function on each element\nof the iterator, and yield elements while it returns non-nil.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;transformer&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(...any) -&gt; any&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 271,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;filter&quot;,
+            &quot;desc&quot;: &quot;Creates an iterator which uses a closure to determine if an element should be yielded.\n\nGiven an element the closure must return true or false. The returned iterator will yield\nonly the elements for which the closure returns true.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;predicate&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(any, any) -&gt; boolean&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 297,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;forEach&quot;,
+            &quot;desc&quot;: &quot;Calls a closure on each element of an iterator.\n\nThis is equivalent to using a for loop on the iterator, although break\nand continue are not possible from a closure. It&#x27;s generally more idiomatic\nto use a for loop, but for_each may be more legible when processing items at\nthe end of longer iterator chains.\n\n#Examples\nBasic usage:\n\n```lua\ntb.array({ 0, 1, 2 })\n\t:map(function(x: number)\n\t\treturn x * 100\n\tend)\n\t:enumerate()\n\t:filter(function(i: number, x: number)\n\t\treturn (i + x) % 3 == 0\n\tend)\n\t:for_each(function(i: number, x: number)\n\t\tprint(`{i}:{x}`)\n\tend)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;f&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(...any) -&gt; ()&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 338,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;iter&quot;,
+    &quot;desc&quot;: &quot;&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 4,
+        &quot;path&quot;: &quot;src/init.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">:all</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">:any</a></li><li><a href="#collect" class="table-of-contents__link toc-highlight">:collect</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">:count</a></li><li><a href="#enumerate" class="table-of-contents__link toc-highlight">:enumerate</a></li><li><a href="#filter" class="table-of-contents__link toc-highlight">:filter</a></li><li><a href="#forEach" class="table-of-contents__link toc-highlight">:forEach</a></li><li><a href="#last" class="table-of-contents__link toc-highlight">:last</a></li><li><a href="#mapWhile" class="table-of-contents__link toc-highlight">:mapWhile</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 chriscerie. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/iter/assets/js/runtime~main.7f97447d.js"></script>
+<script src="/iter/assets/js/main.00dbe645.js"></script>
+</body>
+</html>
