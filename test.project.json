@@ -1,0 +1,21 @@
+{
+  "name": "iter-test",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Packages": {
+        "$path": "Packages",
+        "iter": {
+          "$path": "src"
+        }
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "testRunner": {
+          "$path": "test/testRunner.client.lua"
+        }
+      }
+    }
+  }
+}
