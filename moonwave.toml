@@ -1,0 +1,31 @@
+gitRepoUrl = "https://github.com/chriscerie/iter"
+gitSourceBranch = "main"
+
+[docusaurus]
+tagline = "A composable immutable table library for Lua based on Rust iterators."
+
+[home]
+enabled = true
+includeReadme = false
+
+[[home.features]]
+title = "Easy to Use"
+description = ""
+
+[[home.features]]
+title = "Composable"
+description = ""
+
+[[footer.links]]
+title = "Community"
+
+[[footer.links.items]]
+label = "GitHub"
+href = "https://github.com/chriscerie/iter"
+
+[[footer.links]]
+title = "More"
+
+[[footer.links.items]]
+label = "License"
+href = "https://github.com/chriscerie/iter/blob/main/LICENSE"
