@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[465],{63891:e=>{e.exports=JSON.parse('{"sourceUrl":"https://github.com/chriscerie/iter/blob/main","baseUrl":"/iter/","classOrder":[],"apiCategories":[]}')}}]);
