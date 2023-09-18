@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v2.3.1">
 <title data-rh="true">iter | iter</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://chriscerie.github.io/iter/api/iter"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="iter | iter"><link data-rh="true" rel="canonical" href="https://chriscerie.github.io/iter/api/iter"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="en"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="x-default"><link rel="stylesheet" href="/iter/assets/css/styles.fdfd902f.css">
-<link rel="preload" href="/iter/assets/js/runtime~main.fa1c615d.js" as="script">
-<link rel="preload" href="/iter/assets/js/main.d7bdbc4b.js" as="script">
+<link rel="preload" href="/iter/assets/js/runtime~main.038835f6.js" as="script">
+<link rel="preload" href="/iter/assets/js/main.b239bdff.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -154,7 +154,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
   <li>For dicts, the iterator returned yields tuples <code>(i, key, val)</code></li>
   <li>Indexing starts at 1</li>
 </ul>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="last"><code style="text-decoration:none">last</code><a href="#last" class="hash-link" aria-label="Direct link to last" title="Direct link to last">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L301"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">last</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="last"><code style="text-decoration:none">last</code><a href="#last" class="hash-link" aria-label="Direct link to last" title="Direct link to last">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L301"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">last</code><code>(</code><code>) → </code><code class="blue_P4bS">...any</code></div><div>
 <p>Consumes the iterator, returning the last element.</p>
 <p>
   For non-arrays, this method will evaluate the iterator until it returns <code>nil</code>.
@@ -169,7 +169,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
 <span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span>
 <span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">array</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="map"><code style="text-decoration:none">map</code><a href="#map" class="hash-link" aria-label="Direct link to map" title="Direct link to map">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L325"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">map</code><code>(</code><code>transformer<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="map"><code style="text-decoration:none">map</code><a href="#map" class="hash-link" aria-label="Direct link to map" title="Direct link to map">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L329"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">map</code><code>(</code><code>transformer<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Takes a closure and creates an iterator which calls that closure on each element.</p>
 <p>
   <code>map()</code> transforms one iterator into another. It produces a new iterator which calls this
@@ -184,13 +184,18 @@ iterator <span class="token operator">=</span> <span class="token function">dict
   <code>map()</code> is conceptually similar to a <code>for</code> loop. If you're doing some sort of looping for a side
   effect, it's considered more idiomatic to use for than <code>map()</code>.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapWhile"><code style="text-decoration:none">mapWhile</code><a href="#mapWhile" class="hash-link" aria-label="Direct link to mapWhile" title="Direct link to mapWhile">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L343"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">mapWhile</code><code>(</code><code>transformer<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+<h1>Deviations</h1>
+<p>
+  The closure can return 2 values, in which case the first is used as the key and the second as the value.
+  The iterator would immediately turn into a <code>dict</code> iterator if it wasn't one already.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapWhile"><code style="text-decoration:none">mapWhile</code><a href="#mapWhile" class="hash-link" aria-label="Direct link to mapWhile" title="Direct link to mapWhile">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L355"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">mapWhile</code><code>(</code><code>transformer<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Creates an iterator that both yields elements based on a predicate and maps.</p>
 <p>
   <code>mapWhile()</code> takes a function as an argument. It will call this function on each element
   of the iterator, and yield elements while it returns non-nil.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="next"><code style="text-decoration:none">next</code><a href="#next" class="hash-link" aria-label="Direct link to next" title="Direct link to next">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L380"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">next</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="next"><code style="text-decoration:none">next</code><a href="#next" class="hash-link" aria-label="Direct link to next" title="Direct link to next">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L397"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">next</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
 <p>Advances the iterator and returns the next value.</p>
 <p>Returns <code>nil</code> when iteration is finished.</p>
 <h1>Examples</h1>
@@ -207,13 +212,13 @@ iterator <span class="token operator">=</span> <span class="token function">dict
 <span class="token comment">-- ... and then `nil` once it's over.</span>
 <span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">nil</span> <span class="token operator">==</span> iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="filter"><code style="text-decoration:none">filter</code><a href="#filter" class="hash-link" aria-label="Direct link to filter" title="Direct link to filter">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L393"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">filter</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="filter"><code style="text-decoration:none">filter</code><a href="#filter" class="hash-link" aria-label="Direct link to filter" title="Direct link to filter">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L410"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">filter</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Creates an iterator which uses a closure to determine if an element should be yielded.</p>
 <p>
   Given an element the closure must return true or false. The returned iterator will yield
   only the elements for which the closure returns true.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="forEach"><code style="text-decoration:none">forEach</code><a href="#forEach" class="hash-link" aria-label="Direct link to forEach" title="Direct link to forEach">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L434"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">forEach</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="forEach"><code style="text-decoration:none">forEach</code><a href="#forEach" class="hash-link" aria-label="Direct link to forEach" title="Direct link to forEach">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L451"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">forEach</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Calls a closure on each element of an iterator.</p>
 <p>
   This is equivalent to using a for loop on the iterator, although break
@@ -370,7 +375,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
             &quot;returns&quot;: [
                 {
                     &quot;desc&quot;: &quot;&quot;,
-                    &quot;lua_type&quot;: &quot;any\n&quot;
+                    &quot;lua_type&quot;: &quot;...any\n&quot;
                 }
             ],
             &quot;function_type&quot;: &quot;method&quot;,
@@ -381,7 +386,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
         },
         {
             &quot;name&quot;: &quot;map&quot;,
-            &quot;desc&quot;: &quot;Takes a closure and creates an iterator which calls that closure on each element.\n\n`map()` transforms one iterator into another. It produces a new iterator which calls this\nclosure on each element of the original iterator.\n\nIf you are good at thinking in types, you can think of `map()` like this: If you have an\niterator that gives you elements of some type `A`, and you want an iterator of some other\ntype `B`, you can use `map()`, passing a closure that takes an `A` and returns a `B`.\n\n`map()` is conceptually similar to a `for` loop. If you&#x27;re doing some sort of looping for a side\neffect, it&#x27;s considered more idiomatic to use for than `map()`.&quot;,
+            &quot;desc&quot;: &quot;Takes a closure and creates an iterator which calls that closure on each element.\n\n`map()` transforms one iterator into another. It produces a new iterator which calls this\nclosure on each element of the original iterator.\n\nIf you are good at thinking in types, you can think of `map()` like this: If you have an\niterator that gives you elements of some type `A`, and you want an iterator of some other\ntype `B`, you can use `map()`, passing a closure that takes an `A` and returns a `B`.\n\n`map()` is conceptually similar to a `for` loop. If you&#x27;re doing some sort of looping for a side\neffect, it&#x27;s considered more idiomatic to use for than `map()`.\n\n# Deviations\nThe closure can return 2 values, in which case the first is used as the key and the second as the value.\nThe iterator would immediately turn into a `dict` iterator if it wasn&#x27;t one already.&quot;,
             &quot;params&quot;: [
                 {
                     &quot;name&quot;: &quot;transformer&quot;,
@@ -397,7 +402,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 325,
+                &quot;line&quot;: 329,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -419,7 +424,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 343,
+                &quot;line&quot;: 355,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -435,7 +440,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 380,
+                &quot;line&quot;: 397,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -457,7 +462,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 393,
+                &quot;line&quot;: 410,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -474,7 +479,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 434,
+                &quot;line&quot;: 451,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         }
@@ -488,7 +493,7 @@ iterator <span class="token operator">=</span> <span class="token function">dict
         &quot;path&quot;: &quot;src/init.lua&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">:all</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">:any</a></li><li><a href="#asMut" class="table-of-contents__link toc-highlight">:asMut</a></li><li><a href="#collect" class="table-of-contents__link toc-highlight">:collect</a></li><li><a href="#collectArray" class="table-of-contents__link toc-highlight">:collectArray</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">:count</a></li><li><a href="#enumerate" class="table-of-contents__link toc-highlight">:enumerate</a></li><li><a href="#filter" class="table-of-contents__link toc-highlight">:filter</a></li><li><a href="#forEach" class="table-of-contents__link toc-highlight">:forEach</a></li><li><a href="#last" class="table-of-contents__link toc-highlight">:last</a></li><li><a href="#map" class="table-of-contents__link toc-highlight">:map</a></li><li><a href="#mapWhile" class="table-of-contents__link toc-highlight">:mapWhile</a></li><li><a href="#next" class="table-of-contents__link toc-highlight">:next</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer__link-item">License<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 chriscerie. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
-<script src="/iter/assets/js/runtime~main.fa1c615d.js"></script>
-<script src="/iter/assets/js/main.d7bdbc4b.js"></script>
+<script src="/iter/assets/js/runtime~main.038835f6.js"></script>
+<script src="/iter/assets/js/main.b239bdff.js"></script>
 </body>
 </html>
