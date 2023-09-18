@@ -1,6 +1,6 @@
 [package]
 name = "chriscerie/iter"
-description = ""
+description = "A composable immutable table library for Lua based on Rust's iterators."
 version = "0.1.0"
 license = "MIT"
 authors = ["Christopher Chang"]
