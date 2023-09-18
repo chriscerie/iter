@@ -281,6 +281,115 @@ function iter:enumerate()
 end
 
 --[=[
+	Creates an iterator which uses a closure to determine if an element should be yielded.
+
+	Given an element the closure must return true or false. The returned iterator will yield
+	only the elements for which the closure returns true.
+
+	@return iter
+]=]
+function iter:filter(predicate: (any, any) -> boolean)
+	local newTable = {}
+
+	for key, value in self do
+		if predicate(self:_getInputTuple()) then
+			if self._type == dataTypes.array then
+				table.insert(newTable, value)
+			else
+				newTable[key] = value
+			end
+		end
+	end
+
+	return self._iter(newTable, self._type, self)
+end
+
+--[=[
+	Folds every element into an accumulator by applying an operation, returning the final result.
+
+	`fold()` takes two arguments: an initial value, and a closure with two arguments: an
+	'accumulator', and an element. The closure returns the value that the accumulator should
+	have for the next iteration.
+
+	The initial value is the value the accumulator will have on the first call.
+
+	After applying this closure to every element of the iterator, `fold()` returns the accumulator.
+
+	This operation is sometimes called 'reduce' or 'inject'.
+
+	Folding is useful whenever you have a collection of something, and want to produce a single
+	value from it.
+
+	# Errors
+	* If the iterator is an infinite iterator (DEVIATION)
+
+	# Examples
+	Basic usage:
+
+	```lua
+	local a = {1, 2, 3}
+
+	-- the sum of all of the elements of the array
+	local sum = iter.array(a):fold(0, function(acc, x)
+		return acc + x
+	end)
+
+	assert(sum == 6)
+	```
+
+
+	This example demonstrates the left-associative nature of fold(): it builds a string, starting
+	with an initial value and continuing with each element from the front until the back:
+
+	```lua
+	local numbers = {1, 2, 3, 4, 5}
+
+	local result = iter.array(numbers):fold("0", function(acc, x)
+		return `({acc} + {x})`
+	end);
+
+	assert(result, "(((((0 + 1) + 2) + 3) + 4) + 5)");
+	```
+]=]
+function iter:fold<T>(init: T, f: (T, any) -> T): T
+	for _, value in self do
+		init = f(init, value)
+	end
+	return init
+end
+
+--[=[
+	Calls a closure on each element of an iterator.
+
+	This is equivalent to using a for loop on the iterator, although break
+	and continue are not possible from a closure. It's generally more idiomatic
+	to use a for loop, but for_each may be more legible when processing items at
+	the end of longer iterator chains.
+
+	#Examples
+	Basic usage:
+
+	```lua
+	tb.array({ 0, 1, 2 })
+		:map(function(x: number)
+			return x * 100
+		end)
+		:enumerate()
+		:filter(function(i: number, x: number)
+			return (i + x) % 3 == 0
+		end)
+		:for_each(function(i: number, x: number)
+			print(`{i}:{x}`)
+		end)
+	```
+]=]
+function iter:forEach(f: (...any) -> ())
+	for key, value in self do
+		f(self:_getInputTuple(key, value))
+	end
+end
+
+--[=[
 	Consumes the iterator, returning the last element.
 
 	For non-arrays, this method will evaluate the iterator until it returns `nil`.
@@ -397,61 +506,6 @@ end
 function iter:next(): any
 	self:_next(self._lastKey)
 	return self:_getInputTuple()
-end
-
---[=[
-	Creates an iterator which uses a closure to determine if an element should be yielded.
-
-	Given an element the closure must return true or false. The returned iterator will yield
-	only the elements for which the closure returns true.
-
-	@return iter
-]=]
-function iter:filter(predicate: (any, any) -> boolean)
-	local newTable = {}
-
-	for key, value in self do
-		if predicate(self:_getInputTuple()) then
-			if self._type == dataTypes.array then
-				table.insert(newTable, value)
-			else
-				newTable[key] = value
-			end
-		end
-	end
-
-	return self._iter(newTable, self._type, self)
-end
-
---[=[
-	Calls a closure on each element of an iterator.
-
-	This is equivalent to using a for loop on the iterator, although break
-	and continue are not possible from a closure. It's generally more idiomatic
-	to use a for loop, but for_each may be more legible when processing items at
-	the end of longer iterator chains.
-
-	#Examples
-	Basic usage:
-
-	```lua
-	tb.array({ 0, 1, 2 })
-		:map(function(x: number)
-			return x * 100
-		end)
-		:enumerate()
-		:filter(function(i: number, x: number)
-			return (i + x) % 3 == 0
-		end)
-		:for_each(function(i: number, x: number)
-			print(`{i}:{x}`)
-		end)
-	```
-]=]
-function iter:forEach(f: (...any) -> ())
-	for key, value in self do
-		f(self:_getInputTuple(key, value))
-	end
 end
 
 --[[

@@ -104,6 +104,28 @@ return function()
 			end)
 		end)
 
+		describe("fold", function()
+			it("should accumulate numbers", function()
+				local a = { 1, 2, 3 }
+
+				local sum = iter.array(a):fold(0, function(acc, x)
+					return acc + x
+				end)
+
+				expect(sum).to.be.equal(6)
+			end)
+
+			it("should accumulate strings", function()
+				local numbers = { 1, 2, 3, 4, 5 }
+
+				local result = iter.array(numbers):fold("0", function(acc, x)
+					return `({acc} + {x})`
+				end)
+
+				expect(result).to.be.equal("(((((0 + 1) + 2) + 3) + 4) + 5)")
+			end)
+		end)
+
 		describe("forEach", function()
 			it("should be called on each element", function()
 				local t = { 1, 2, 3 }
