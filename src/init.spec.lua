@@ -139,18 +139,31 @@ return function()
 					expect(v).to.be.equal(t[i] * 2)
 				end
 			end)
+
+			it("should set values to appropriate keys when returning 2 values", function()
+				local t = { 1, 2, 3 }
+				local result = iter.array(t)
+					:map(function(value: number)
+						return value * 2, true
+					end)
+					:collect()
+
+				for _, v in t do
+					expect(result[v * 2]).to.be.equal(true)
+				end
+			end)
 		end)
 
 		describe("mapWhile", function()
 			it("should generate new iterator of transformed values", function()
 				local t = { 1, 2, 3 }
 				local result = iter.array(t)
-					:map(function(value: number)
+					:mapWhile(function(value: number)
 						return value * 2
 					end)
 					:collect()
 
-				expect(#result).to.be.equal(#t)
+				expect(iter.dict(result):count()).to.be.equal(#t)
 				for i, v in result do
 					expect(v).to.be.equal(t[i] * 2)
 				end
@@ -159,13 +172,26 @@ return function()
 			it("should short circuit on nil", function()
 				local t = { 1, 2, 3 }
 				local result = iter.array(t)
-					:map(function(value: number)
+					:mapWhile(function(value: number)
 						return if value == 2 then nil else value * 2
 					end)
 					:collect()
 
-				expect(#result).to.be.equal(1)
+				expect(iter.dict(result):count()).to.be.equal(1)
 				expect(result[1]).to.be.equal(2)
+			end)
+
+			it("should set values to appropriate keys when returning 2 values", function()
+				local t = { 1, 2, 3 }
+				local result = iter.array(t)
+					:mapWhile(function(value: number)
+						return value * 2, true
+					end)
+					:collect()
+
+				for _, v in t do
+					expect(result[v * 2]).to.be.equal(true)
+				end
 			end)
 		end)
 	end)

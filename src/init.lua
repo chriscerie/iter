@@ -11,11 +11,11 @@ iter.dataTypes = {
 
 local dataTypes = iter.dataTypes
 
-function iter._iter(tb, type: string, prevIter: any?)
-	assert(typeof(tb) == "table", "iter expected table, got " .. typeof(tb))
+function iter._iter(value, type: string, prevIter: any?)
+	assert(typeof(value) == "table", "iter expected table, got " .. typeof(value))
 
 	local self = setmetatable({
-		_value = table.clone(tb),
+		_value = table.clone(value),
 		_type = type or dataTypes.dict,
 		_lastKey = nil,
 		_enumerate = false,
@@ -31,12 +31,12 @@ function iter._iter(tb, type: string, prevIter: any?)
 	return self
 end
 
-function iter._dict(tb: { [any]: any })
-	return iter._iter(tb, dataTypes.dict)
+function iter._dict(value: { [any]: any })
+	return iter._iter(value, dataTypes.dict)
 end
 
-function iter._array(tb: { any })
-	return iter._iter(tb, dataTypes.array)
+function iter._array(value: { any })
+	return iter._iter(value, dataTypes.array)
 end
 
 function iter:_next(last)
@@ -298,7 +298,7 @@ end
 	assert(array(a).last() == 5)
 	```
 ]=]
-function iter:last(): any
+function iter:last(): ...any
 	local res = {}
 	while self:next() ~= nil do
 		res = { self:_getInputTuple() }
@@ -320,16 +320,28 @@ end
 	`map()` is conceptually similar to a `for` loop. If you're doing some sort of looping for a side
 	effect, it's considered more idiomatic to use for than `map()`.
 
+	# Deviations
+	The closure can return 2 values, in which case the first is used as the key and the second as the value.
+	The iterator would immediately turn into a `dict` iterator if it wasn't one already.
+
 	@return iter
 ]=]
 function iter:map(transformer: (...any) -> any)
 	local newTable = {}
 
 	for key, value in self do
-		newTable[key] = transformer(self:_getInputTuple(key, value))
+		local results = { transformer(self:_getInputTuple(key, value)) }
+
+		if #results < 2 then
+			newTable[key] = results[1]
+		elseif #results == 2 then
+			newTable[results[1]] = results[2]
+		else
+			error("`map()` must return 0 - 2 values")
+		end
 	end
 
-	return iter._iter(newTable, self._type, self)
+	return self._iter(newTable, self._type, self)
 end
 
 --[=[
@@ -344,11 +356,16 @@ function iter:mapWhile(transformer: (...any) -> any)
 	local newTable = {}
 
 	for key, value in self do
-		local newValue = transformer(self:_getInputTuple(key, value))
-		newTable[key] = newValue
+		local results = { transformer(self:_getInputTuple(key, value)) }
 
-		if newValue == nil then
+		if #results == 0 then
 			break
+		elseif #results == 1 then
+			newTable[key] = results[1]
+		elseif #results == 2 then
+			newTable[results[1]] = results[2]
+		else
+			error("`map()` must return 0 - 2 values")
 		end
 	end
 
