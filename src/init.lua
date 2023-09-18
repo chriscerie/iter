@@ -11,24 +11,32 @@ iter.dataTypes = {
 
 local dataTypes = iter.dataTypes
 
-function iter._iter(tb, type: string, enumerate: boolean)
+function iter._iter(tb, type: string, prevIter: any?)
 	assert(typeof(tb) == "table", "iter expected table, got " .. typeof(tb))
 
-	return setmetatable({
-		_value = tb,
+	local self = setmetatable({
+		_value = table.clone(tb),
 		_type = type or dataTypes.dict,
 		_lastKey = nil,
-		_enumerate = enumerate,
+		_enumerate = false,
+		_asMut = false,
 		_iterationCount = 0,
 	}, iter)
+
+	if prevIter then
+		self._enumerate = prevIter._enumerate
+		self._asMut = prevIter._asMut
+	end
+
+	return self
 end
 
 function iter._dict(tb: { [any]: any })
-	return iter._iter(tb, dataTypes.dict, false)
+	return iter._iter(tb, dataTypes.dict)
 end
 
 function iter._array(tb: { any })
-	return iter._iter(tb, dataTypes.array, false)
+	return iter._iter(tb, dataTypes.array)
 end
 
 function iter:_next(last)
@@ -92,7 +100,7 @@ end
 	assert(next(iterator) == 3)
 	```
 ]=]
-function iter:all(predicate: (...any) -> boolean)
+function iter:all(predicate: (...any) -> boolean): boolean
 	for key, value in self do
 		if predicate(self:_getInputTuple(key, value)) then
 			return false
@@ -100,6 +108,20 @@ function iter:all(predicate: (...any) -> boolean)
 	end
 
 	return true
+end
+
+--[=[
+	Ensures `table.freeze` doesn't get called when iterator gets collected.
+
+	# Deviations
+	In Rust this is done by specifying `mut` to the assigning variable,
+	but this is not a feature in Lua.
+
+	@return iter
+]=]
+function iter:asMut()
+	self._asMut = true
+	return iter._iter(self._value, self._type, self)
 end
 
 --[=[
@@ -146,7 +168,7 @@ end
 	assert(next(iterator) == 2)
 	```
 ]=]
-function iter:any(predicate: (...any) -> boolean)
+function iter:any(predicate: (...any) -> boolean): boolean
 	for key, value in self do
 		if predicate(self:_getInputTuple(key, value)) then
 			return true
@@ -163,7 +185,7 @@ end
 	number of times it saw values. Note that [`next`] has to be called at least once even
 	if the iterator does not have any elements.
 ]=]
-function iter:count()
+function iter:count(): number
 	local count = 0
 	while self:next() ~= nil do
 		count += 1
@@ -181,9 +203,39 @@ end
 	The most basic pattern in which `collect()` is used is to turn one table into
 	another. You take a table, call [`iter`] on it, do a bunch of transformations,
 	and then `collect()` at the end.
+
+	# Deviations
+	The returned table is frozen by default if [`asMut`] was never called.
 ]=]
-function iter:collect()
-	return self._value
+function iter:collect(): { [any]: any }
+	local res = self._value
+
+	if not self._asMut then
+		res = table.freeze(self._value)
+	end
+
+	return res
+end
+
+--[=[
+	Same thing as [`collect`], but turns table into arrays of its values and discards its keys.
+
+	# Deviations
+	* In Rust this would be done by using [`collect`] and specifying the type, but types in lua
+	do not affect the runtime.
+	* The returned table is frozen by default if [`asMut`] was never called.
+]=]
+function iter:collectArray(): { any }
+	local res = {}
+	for _, value in self do
+		table.insert(res, value)
+	end
+
+	if not self._asMut then
+		res = table.freeze(res)
+	end
+
+	return res
 end
 
 --[=[
@@ -220,9 +272,12 @@ end
 	# Deviations
 	* For dicts, the iterator returned yields tuples `(i, key, val)`
 	* Indexing starts at 1
+
+	@return iter
 ]=]
 function iter:enumerate()
-	return self._iter(self._value, self._type, true)
+	self._enumerate = true
+	return iter._iter(self._value, self._type, self)
 end
 
 --[=[
@@ -236,11 +291,11 @@ end
 	Basic usage:
 
 	```lua
-	local a = {1, 2, 3};
-	assert(array(a).last() == 3);
+	local a = {1, 2, 3}
+	assert(array(a).last() == 3)
 
-	local a = {1, 2, 3, 4, 5};
-	assert(array(a).last() == 5);
+	local a = {1, 2, 3, 4, 5}
+	assert(array(a).last() == 5)
 	```
 ]=]
 function iter:last(): any
@@ -252,6 +307,21 @@ function iter:last(): any
 	return table.unpack(res)
 end
 
+--[=[
+	Takes a closure and creates an iterator which calls that closure on each element.
+
+	`map()` transforms one iterator into another. It produces a new iterator which calls this
+	closure on each element of the original iterator.
+
+	If you are good at thinking in types, you can think of `map()` like this: If you have an
+	iterator that gives you elements of some type `A`, and you want an iterator of some other
+	type `B`, you can use `map()`, passing a closure that takes an `A` and returns a `B`.
+
+	`map()` is conceptually similar to a `for` loop. If you're doing some sort of looping for a side
+	effect, it's considered more idiomatic to use for than `map()`.
+
+	@return iter
+]=]
 function iter:map(transformer: (...any) -> any)
 	local newTable = {}
 
@@ -259,7 +329,7 @@ function iter:map(transformer: (...any) -> any)
 		newTable[key] = transformer(self:_getInputTuple(key, value))
 	end
 
-	return self._iter(newTable, self._type, self._enumerate)
+	return iter._iter(newTable, self._type, self)
 end
 
 --[=[
@@ -267,6 +337,8 @@ end
 
 	`mapWhile()` takes a function as an argument. It will call this function on each element
 	of the iterator, and yield elements while it returns non-nil.
+
+	@return iter
 ]=]
 function iter:mapWhile(transformer: (...any) -> any)
 	local newTable = {}
@@ -280,10 +352,32 @@ function iter:mapWhile(transformer: (...any) -> any)
 		end
 	end
 
-	return self._iter(newTable, self._type, self._enumerate)
+	return self._iter(newTable, self._type, self)
 end
 
-function iter:next()
+--[=[
+	Advances the iterator and returns the next value.
+
+	Returns `nil` when iteration is finished.
+
+	# Examples
+	Basic usage:
+
+	```lua
+	local a = {1, 2, 3}
+
+	local iterator = iter.array(a)
+
+	-- A call to next() returns the next value...
+	assert(1 == iter.next())
+	assert(2 == iter.next())
+	assert(3 == iter.next())
+
+	-- ... and then `nil` once it's over.
+	assert(nil == iter.next())
+	```
+]=]
+function iter:next(): any
 	self:_next(self._lastKey)
 	return self:_getInputTuple()
 end
@@ -293,6 +387,8 @@ end
 
 	Given an element the closure must return true or false. The returned iterator will yield
 	only the elements for which the closure returns true.
+
+	@return iter
 ]=]
 function iter:filter(predicate: (any, any) -> boolean)
 	local newTable = {}
@@ -307,7 +403,7 @@ function iter:filter(predicate: (any, any) -> boolean)
 		end
 	end
 
-	return self._iter(newTable, self._type, self._enumerate)
+	return self._iter(newTable, self._type, self)
 end
 
 --[=[

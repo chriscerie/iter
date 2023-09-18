@@ -53,6 +53,20 @@ return function()
 			end)
 		end)
 
+		describe("collect", function()
+			it("should be immutable by default if `asMut` was not called", function()
+				local result = iter.array({}):collect()
+				expect(table.isfrozen(result)).to.be.equal(true)
+			end)
+		end)
+
+		describe("collectArray", function()
+			it("should be immutable by default if `asMut` was not called", function()
+				local result = iter.array({}):collectArray()
+				expect(table.isfrozen(result)).to.be.equal(true)
+			end)
+		end)
+
 		describe("enumerate", function()
 			it("should give the index and value of array.last", function()
 				local t = { "a", "b", "c" }

@@ -2,7 +2,7 @@ gitRepoUrl = "https://github.com/chriscerie/iter"
 gitSourceBranch = "main"
 
 [docusaurus]
-tagline = "A composable immutable table library for Lua based on Rust iterators."
+tagline = "A composable immutable table library for Lua based on Rust's iterators."
 
 [home]
 enabled = true
@@ -14,6 +14,10 @@ description = ""
 
 [[home.features]]
 title = "Composable"
+description = ""
+
+[[home.features]]
+title = "Immutable"
 description = ""
 
 [[footer.links]]
