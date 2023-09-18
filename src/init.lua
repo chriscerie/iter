@@ -1,4 +1,10 @@
+--!native
 --!strict
+
+local controlFlow = require(script.controlFlow)
+local filter = require(script.filter)
+local map = require(script.map)
+local mapWhile = require(script.mapWhile)
 
 --- @class iter
 local iter = {}
@@ -15,7 +21,7 @@ function iter._iter(value, type: string, prevIter: any?)
 	assert(typeof(value) == "table", "iter expected table, got " .. typeof(value))
 
 	local self = setmetatable({
-		_value = table.clone(value),
+		_value = value,
 		_type = type or dataTypes.dict,
 		_lastKey = nil,
 		_enumerate = false,
@@ -100,14 +106,15 @@ end
 	assert(next(iterator) == 3)
 	```
 ]=]
-function iter:all(predicate: (...any) -> boolean): boolean
-	for key, value in self do
-		if predicate(self:_getInputTuple(key, value)) then
-			return false
+function iter:all(f: (...any) -> boolean): boolean
+	local res = self:tryFold(true, function(_, ...)
+		if f(...) then
+			return true
 		end
-	end
+		return controlFlow.Break(true)
+	end)
 
-	return true
+	return controlFlow.isBreak(res)
 end
 
 --[=[
@@ -168,14 +175,18 @@ end
 	assert(next(iterator) == 2)
 	```
 ]=]
-function iter:any(predicate: (...any) -> boolean): boolean
-	for key, value in self do
-		if predicate(self:_getInputTuple(key, value)) then
-			return true
-		end
-	end
+function iter:any(f: (...any) -> boolean): boolean
+	local hasAny = false
 
-	return false
+	self:tryFold(true, function(_, ...)
+		if f(...) then
+			hasAny = true
+			return nil
+		end
+		return true
+	end)
+
+	return hasAny
 end
 
 --[=[
@@ -186,12 +197,9 @@ end
 	if the iterator does not have any elements.
 ]=]
 function iter:count(): number
-	local count = 0
-	while self:next() ~= nil do
-		count += 1
-	end
-
-	return count
+	return self:fold(0, function(count: number)
+		return count + 1
+	end)
 end
 
 --[=[
@@ -208,10 +216,19 @@ end
 	The returned table is frozen by default if [`asMut`] was never called.
 ]=]
 function iter:collect(): { [any]: any }
-	local res = self._value
+	local res = {}
+
+	repeat
+		local values = { self:next() }
+		if #values == 1 then
+			table.insert(res, values[1])
+		elseif #values == 2 then
+			res[values[1]] = values[2]
+		end
+	until #values == 0
 
 	if not self._asMut then
-		res = table.freeze(self._value)
+		res = table.freeze(res)
 	end
 
 	return res
@@ -227,9 +244,15 @@ end
 ]=]
 function iter:collectArray(): { any }
 	local res = {}
-	for _, value in self do
-		table.insert(res, value)
-	end
+
+	repeat
+		local values = { self:next() }
+		if #values == 1 then
+			table.insert(res, values[1])
+		elseif #values == 2 then
+			table.insert(res, values[2])
+		end
+	until #values == 0
 
 	if not self._asMut then
 		res = table.freeze(res)
@@ -289,19 +312,28 @@ end
 	@return iter
 ]=]
 function iter:filter(predicate: (any, any) -> boolean)
-	local newTable = {}
+	return filter.new(self, iter._iter, predicate)
+end
 
-	for key, value in self do
-		if predicate(self:_getInputTuple()) then
-			if self._type == dataTypes.array then
-				table.insert(newTable, value)
-			else
-				newTable[key] = value
-			end
+--[=[
+	Searches for an element of an iterator that satisfies a predicate.
+
+	`find()` takes a closure that returns true or false. It applies this closure to each element
+	of the iterator, and if any of them return true, then `find()` returns the element. If
+	they all return false, it returns `nil`.
+
+	`find()` is short-circuiting; in other words, it will stop processing as soon as the closure
+	returns `true`
+]=]
+function iter:find(predicate: (...any) -> boolean): ...any?
+	repeat
+		local hasVal = self:next() ~= nil
+		if hasVal and predicate(self:_getInputTuple()) then
+			return self:_getInputTuple()
 		end
-	end
+	until not hasVal
 
-	return self._iter(newTable, self._type, self)
+	return nil
 end
 
 --[=[
@@ -351,11 +383,16 @@ end
 	assert(result, "(((((0 + 1) + 2) + 3) + 4) + 5)");
 	```
 ]=]
-function iter:fold<T>(init: T, f: (T, any) -> T): T
-	for _, value in self do
-		init = f(init, value)
-	end
-	return init
+function iter:fold<T>(init: T, f: (T, ...any) -> T): T
+	local accum = init
+	repeat
+		local hasVal = self:next() ~= nil
+		if hasVal then
+			accum = f(accum, self:_getInputTuple())
+		end
+	until not hasVal
+
+	return accum
 end
 
 --[=[
@@ -384,6 +421,71 @@ end
 	```
 ]=]
 function iter:forEach(f: (...any) -> ())
+	self:fold(nil, function(_, ...)
+		f(...)
+	end)
+end
+
+--[=[
+	Does something with each element of an iterator, passing the value on.
+
+	When using iterators, you'll often chain several of them together. While working
+	on such code, you might want to check out what's happening at various parts in
+	the pipeline. To do that, insert a call to `inspect()`.
+
+	It's more common for `inspect()` to be used as a debugging tool than to exist in
+	your final code, but applications may find it useful in certain situations when
+	errors need to be logged before being discarded.
+
+	# Examples
+	Basic usage:
+
+	```lua
+	local a = {1, 4, 2, 3}
+
+	-- this iterator sequence is complex.
+	local sum = iter.array(a)
+		:cloned()
+		:filter(function(x) 
+			return x % 2 == 0
+		end)
+		:fold(0, function(sum, i)
+			return sum + i
+		end)
+
+	print("{sum}")
+
+	-- let's add some inspect() calls to investigate what's happening
+	let sum = a.iter()
+		:inspect(function(x)
+			print("about to filter: {x}")
+		end)
+		:filter(function(x)
+			return x % 2 == 0
+		end)
+		:inspect(function(x)
+			print("made it through filter: {x}")
+		end)
+		:fold(0, function(sum, i)
+			return sum + i
+		end)
+
+	print(`{sum}`)
+	```
+	This will print:
+
+	```
+	6
+	about to filter: 1
+	about to filter: 4
+	made it through filter: 4
+	about to filter: 2
+	made it through filter: 2
+	about to filter: 3
+	6
+	```
+]=]
+function iter:inspect(f: (...any) -> ())
 	for key, value in self do
 		f(self:_getInputTuple(key, value))
 	end
@@ -435,22 +537,8 @@ end
 
 	@return iter
 ]=]
-function iter:map(transformer: (...any) -> any)
-	local newTable = {}
-
-	for key, value in self do
-		local results = { transformer(self:_getInputTuple(key, value)) }
-
-		if #results < 2 then
-			newTable[key] = results[1]
-		elseif #results == 2 then
-			newTable[results[1]] = results[2]
-		else
-			error("`map()` must return 0 - 2 values")
-		end
-	end
-
-	return self._iter(newTable, self._type, self)
+function iter:map(f: (...any) -> ...any)
+	return map.new(self, iter._iter, f)
 end
 
 --[=[
@@ -461,24 +549,8 @@ end
 
 	@return iter
 ]=]
-function iter:mapWhile(transformer: (...any) -> any)
-	local newTable = {}
-
-	for key, value in self do
-		local results = { transformer(self:_getInputTuple(key, value)) }
-
-		if #results == 0 then
-			break
-		elseif #results == 1 then
-			newTable[key] = results[1]
-		elseif #results == 2 then
-			newTable[results[1]] = results[2]
-		else
-			error("`map()` must return 0 - 2 values")
-		end
-	end
-
-	return self._iter(newTable, self._type, self)
+function iter:mapWhile(predicate: (...any) -> ...any)
+	return mapWhile.new(self, iter._iter, predicate)
 end
 
 --[=[
@@ -506,6 +578,43 @@ end
 function iter:next(): any
 	self:_next(self._lastKey)
 	return self:_getInputTuple()
+end
+
+--[=[
+	An iterator method that applies a function as long as it returns successfully, producing a single,
+		final value.
+
+	`tryFold()` takes two arguments: an initial value, and a closure with two arguments: an 'accumulator',
+	and an element. The closure either returns successfully, with the value that the accumulator should
+	have for the next iteration, or it returns `nil` that is propagated back to the caller immediately
+	(short-circuiting).
+
+	The initial value is the value the accumulator will have on the first call. If applying the closure
+	succeeded against every element of the iterator, `tryFold()` returns the final accumulator as success.
+
+	Folding is useful whenever you have a collection of something, and want to produce a single value from it.
+]=]
+function iter:tryFold<T>(init: T, f: (T, ...any) -> T?): T?
+	local accum = init
+	repeat
+		local hasVal = self:next() ~= nil
+		if hasVal then
+			local newValue = f(accum, self:_getInputTuple())
+
+			if newValue == nil then
+				return nil
+			end
+
+			if controlFlow.isBreak(newValue) then
+				return accum
+			end
+
+			-- Luau isn't able to convert T? to T
+			accum = newValue :: any
+		end
+	until not hasVal
+
+	return accum
 end
 
 --[[

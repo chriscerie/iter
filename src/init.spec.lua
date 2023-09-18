@@ -37,7 +37,34 @@ return function()
 				end)).to.be.equal(false)
 
 				-- we can still use `iter`, as there are more elements.
-				expect(iterator:next()).to.be.equal(2)
+				expect(iterator:next()).to.be.equal(3)
+			end)
+
+			it("should short circuit on the first true when appended to other operations", function()
+				local a = { 1, 2, 3 }
+				local numCalledMap = 0
+				local numCalledFilter = 0
+
+				local iterator = iter.array(a)
+
+				expect(iterator
+					:map(function(x)
+						numCalledMap += 1
+						return -x
+					end)
+					:filter(function(_)
+						numCalledFilter += 1
+						return true
+					end)
+					:all(function(x)
+						return x ~= -2
+					end)).to.be.equal(false)
+
+				expect(numCalledMap).to.be.equal(2)
+				expect(numCalledFilter).to.be.equal(2)
+
+				-- we can still use `iter`, as there are more elements.
+				expect(iterator:next()).to.be.equal(3)
 			end)
 		end)
 
@@ -49,6 +76,9 @@ return function()
 
 			it("should return number of elements", function()
 				local result = iter.array({ 1, 2, 3 }):count()
+				expect(result).to.be.equal(3)
+
+				result = iter.array({ a = 1, b = 2, c = 3 }):count()
 				expect(result).to.be.equal(3)
 			end)
 		end)
@@ -174,6 +204,10 @@ return function()
 					expect(result[v * 2]).to.be.equal(true)
 				end
 			end)
+
+			it("does not short circuit on nil", function()
+				-- TODO
+			end)
 		end)
 
 		describe("mapWhile", function()
@@ -214,6 +248,82 @@ return function()
 				for _, v in t do
 					expect(result[v * 2]).to.be.equal(true)
 				end
+			end)
+
+			it("should work when chained to other operations", function()
+				local t = { 1, 2, 3 }
+				local result = iter.array(t)
+					:mapWhile(function(value)
+						return if value == 2 then nil else value
+					end)
+					:filter(function(value)
+						expect(value).to.be.an("number")
+						return true
+					end)
+					:count()
+
+				expect(result).to.be.equal(1)
+			end)
+
+			it("should short circuit when chained to other operations", function()
+				local t = { 1, 2, 3, 4, 5, 6 }
+				local countMap = 0
+
+				iter.array(t)
+					:mapWhile(function(value)
+						countMap += 1
+						return if value == 5 then nil else value
+					end)
+					:filter(function(value)
+						countMap += 1
+						return value <= 5
+					end)
+					:mapWhile(function(value)
+						return if value == 2 then nil else value
+					end)
+					:fold(0, function(acc, value)
+						return acc + value
+					end)
+
+				expect(countMap).to.be.equal(4)
+			end)
+		end)
+
+		describe("tryFold", function()
+			it("should accumulate numbers", function()
+				local a = { 1, 2, 3 }
+
+				local sum = iter.array(a):tryFold(0, function(acc, x)
+					return acc + x
+				end)
+
+				expect(sum).to.be.equal(6)
+			end)
+
+			it("should accumulate strings", function()
+				local numbers = { 1, 2, 3, 4, 5 }
+
+				local result = iter.array(numbers):tryFold("0", function(acc, x)
+					return `({acc} + {x})`
+				end)
+
+				expect(result).to.be.equal("(((((0 + 1) + 2) + 3) + 4) + 5)")
+			end)
+
+			it("should return `nil` if fn returns `nil`", function()
+				local numbers = { 1, 2, 3, 4, 5 }
+
+				local iterator = iter.array(numbers)
+
+				local result = iterator:tryFold("0", function(acc, x)
+					if x == 3 then
+						return nil
+					end
+					return `({acc} + {x})`
+				end)
+
+				expect(result).to.be.equal(nil)
+				expect(iterator:next()).to.be.equal(4)
 			end)
 		end)
 	end)
