@@ -31,7 +31,7 @@ return {
 	end,
 
 	Functions = {
-		-- 7.10 ms
+		-- 7.39 ms
 		loop = function(_, t)
 			-- In a practical scenario, if the consumer code is separate from the transformation code,
 			-- you'd need to apply the transformation to the entire table even if you only need part of it
@@ -43,10 +43,10 @@ return {
 			consumeTable(checkedValues)
 		end,
 
-		-- 0.07 ms
+		-- 0.11 ms
 		iter = function(_, t)
 			-- Using iterators we can avoid applying the transformation to the entire table
-			local iterator = iter.array(t):map(function(value)
+			local iterator = iter.new(t):map(function(_, value)
 				return someExpensiveFn(value)
 			end)
 			consumeIterator(iterator)

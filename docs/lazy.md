@@ -7,7 +7,7 @@ sidebar_position: 2
 Iterators are lazy, meaning they don't do any processing work until you need them. This code won't run because `map` by itself doesn't do anything, because the would-be result is never used.
 
 ```lua
-    iter.array(t):map(function(value: number)
+    iter.new(t):map(function(_, value: number)
         -- This never runs
         return value * 2
     end)
@@ -16,8 +16,8 @@ Iterators are lazy, meaning they don't do any processing work until you need the
 Iterators only run when they are needed and consumed. There's several ways to consume iterators. One of the most common ways is to grab the resulting table with `collect`.
 
 ```lua
-    iter.array(t)
-        :map(function(value: number)
+    iter.new(t)
+        :map(function(_, value: number)
             -- Now this runs
             return value * 2
         end)
@@ -27,8 +27,8 @@ Iterators only run when they are needed and consumed. There's several ways to co
 This mechanism enables `iter` to perform aggressive optimizations when it can. Imagine you want to apply some expensive transformation function to an array, but you only want to get the first 40 elements. `iter` will see that you don't need the entire array to be transformed, so it will stop at the first 40. If the original array is some extreme size, it's that many iterations that `iter` avoids.
 
 ```lua
-    iter.array(t)
-        :map(function(value: number)
+    iter.new(t)
+        :map(function(_, value: number)
             -- Only runs 40 times even if array is much larger
             return someExpensiveFn(value)
         end)

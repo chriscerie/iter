@@ -11,39 +11,30 @@ local take = require(script.take)
 local iter = {}
 iter.__index = iter
 
-iter.dataTypes = {
-	dict = "Dict",
-	array = "Array",
-}
+--[=[
+	Constructs new `iter`
 
-local dataTypes = iter.dataTypes
+	@return iter
+]=]
+function iter.new(value: { [any]: any })
+	return iter._new(value)
+end
 
-function iter._iter(value, type: string, prevIter: any?)
+function iter._new(value, prevIter: any?)
 	assert(typeof(value) == "table", "iter expected table, got " .. typeof(value))
 
 	local self = setmetatable({
 		_value = value,
-		_type = type or dataTypes.dict,
 		_lastKey = nil,
-		_enumerate = false,
 		_asMut = false,
 		_iterationCount = 0,
 	}, iter)
 
 	if prevIter then
-		self._enumerate = prevIter._enumerate
 		self._asMut = prevIter._asMut
 	end
 
 	return self
-end
-
-function iter._dict(value: { [any]: any })
-	return iter._iter(value, dataTypes.dict)
-end
-
-function iter._array(value: { any })
-	return iter._iter(value, dataTypes.array)
 end
 
 function iter:_next(last)
@@ -83,11 +74,11 @@ end
 	```lua
 	local a = {1, 2, 3}
 
-	assert(iter(a):all(function(x)
+	assert(iter(a):all(function(_, x)
 		return x > 0
 	end))
 
-	assert(not iter(a):all(function(x)
+	assert(not iter(a):all(function(_, x)
 		return x > 2
 	end))
 	```
@@ -99,7 +90,7 @@ end
 
 	local iterator = iter(a)
 
-	assert(not iterator:all(function(x)
+	assert(not iterator:all(function(_, x)
 		return x ~= 2
 	end))
 
@@ -115,7 +106,7 @@ function iter:all(f: (...any) -> boolean): boolean
 		return controlFlow.Break(true)
 	end)
 
-	return controlFlow.isBreak(res)
+	return not controlFlow.isBreak(res)
 end
 
 --[=[
@@ -129,7 +120,7 @@ end
 ]=]
 function iter:asMut()
 	self._asMut = true
-	return iter._iter(self._value, self._type, self)
+	return self
 end
 
 --[=[
@@ -152,11 +143,11 @@ end
 	```lua
 	local a = {1, 2, 3}
 
-	assert(iter(a):all(function(x)
+	assert(iter(a):all(function(_, x)
 		return x > 0
 	end))
 
-	assert(not iter(a):all(function(x)
+	assert(not iter(a):all(function(_, x)
 		return x > 5
 	end))
 	```
@@ -168,7 +159,7 @@ end
 
 	local iterator = iter(a)
 
-	assert(not iterator:all(function(x)
+	assert(not iterator:all(function(_, x)
 		return x ~= 2
 	end))
 
@@ -219,14 +210,10 @@ end
 function iter:collect(): { [any]: any }
 	local res = {}
 
-	repeat
-		local values = { self:next() }
-		if #values == 1 then
-			table.insert(res, values[1])
-		elseif #values == 2 then
-			res[values[1]] = values[2]
-		end
-	until #values == 0
+	self:tryFold(true, function(_, key, value)
+		res[key] = value
+		return true
+	end)
 
 	if not self._asMut then
 		res = table.freeze(res)
@@ -246,62 +233,16 @@ end
 function iter:collectArray(): { any }
 	local res = {}
 
-	repeat
-		local values = { self:next() }
-		if #values == 1 then
-			table.insert(res, values[1])
-		elseif #values == 2 then
-			table.insert(res, values[2])
-		end
-	until #values == 0
+	self:tryFold(true, function(_, _, value)
+		table.insert(res, value)
+		return true
+	end)
 
 	if not self._asMut then
 		res = table.freeze(res)
 	end
 
 	return res
-end
-
---[=[
-	Creates an iterator which gives the current iteration count as well as the next value.
-
-	The iterator returned yields pairs `(i, val)` for arrays and `(i, key, val)` for dicts,
-	where i is the current index of iteration.
-
-	# Examples
-	```lua
-	local a = {'a', 'b', 'c'}
-
-	local iterator = array(a).enumerate()
-
-	print(iterator:next()) -> 1, "a"
-	print(iterator:next()) -> 2, "b"
-	print(iterator:next()) -> 3, "c"
-	print(iterator:next()) -> nil
-
-	local b = {
-		akey = 'a',
-		bkey = 'b',
-		ckey = 'c',
-	}
-
-	iterator = dict(b).enumerate()
-
-	print(iterator:next()) -> 1, "akey", "a"
-	print(iterator:next()) -> 2, "bkey", "b"
-	print(iterator:next()) -> 3, "ckey", "c"
-	print(iterator:next()) -> nil
-	```
-
-	# Deviations
-	* For dicts, the iterator returned yields tuples `(i, key, val)`
-	* Indexing starts at 1
-
-	@return iter
-]=]
-function iter:enumerate()
-	self._enumerate = true
-	return iter._iter(self._value, self._type, self)
 end
 
 --[=[
@@ -313,7 +254,7 @@ end
 	@return iter
 ]=]
 function iter:filter(predicate: (any, any) -> boolean)
-	return filter.new(self, iter._iter, predicate)
+	return filter.new(self, iter._new, predicate)
 end
 
 --[=[
@@ -321,20 +262,24 @@ end
 
 	`find()` takes a closure that returns true or false. It applies this closure to each element
 	of the iterator, and if any of them return true, then `find()` returns the element. If
-	they all return false, it returns `nil`.
+	they all return false, it returns `None`.
 
 	`find()` is short-circuiting; in other words, it will stop processing as soon as the closure
 	returns `true`
 ]=]
 function iter:find(predicate: (...any) -> boolean): ...any?
-	repeat
-		local hasVal = self:next() ~= nil
-		if hasVal and predicate(self:_getInputTuple()) then
-			return self:_getInputTuple()
+	local res = self:tryFold(false, function(_, i, x)
+		if predicate(i, x) then
+			return controlFlow.Break({ i, x })
 		end
-	until not hasVal
+		return false
+	end)
 
-	return nil
+	if controlFlow.isBreak(res) then
+		return table.unpack(res.value)
+	end
+
+	return controlFlow.None
 end
 
 --[=[
@@ -363,7 +308,7 @@ end
 	local a = {1, 2, 3}
 
 	-- the sum of all of the elements of the array
-	local sum = iter.array(a):fold(0, function(acc, x)
+	local sum = iter.new(a):fold(0, function(acc, x)
 		return acc + x
 	end)
 
@@ -377,7 +322,7 @@ end
 	```lua
 	local numbers = {1, 2, 3, 4, 5}
 
-	local result = iter.array(numbers):fold("0", function(acc, x)
+	local result = iter.new(numbers):fold("0", function(acc, x)
 		return `({acc} + {x})`
 	end);
 
@@ -386,13 +331,12 @@ end
 ]=]
 function iter:fold<T>(init: T, f: (T, ...any) -> T): T
 	local accum = init
-	repeat
-		local hasVal = self:next() ~= nil
-		if hasVal then
-			accum = f(accum, self:_getInputTuple())
-		end
-	until not hasVal
-
+	local next = { self:next() }
+	while next[1] ~= controlFlow.None do
+		local value = if #next == 2 then next[2] else next[3]
+		accum = f(accum, self:_getInputTuple(nil, value))
+		next = { self:next() }
+	end
 	return accum
 end
 
@@ -408,11 +352,10 @@ end
 	Basic usage:
 
 	```lua
-	tb.array({ 0, 1, 2 })
-		:map(function(x: number)
+	iter.new({ 0, 1, 2 })
+		:map(function(_, x: number)
 			return x * 100
 		end)
-		:enumerate()
 		:filter(function(i: number, x: number)
 			return (i + x) % 3 == 0
 		end)
@@ -445,7 +388,7 @@ end
 	local a = {1, 4, 2, 3}
 
 	-- this iterator sequence is complex.
-	local sum = iter.array(a)
+	local sum = iter.new(a)
 		:cloned()
 		:filter(function(x) 
 			return x % 2 == 0
@@ -504,17 +447,16 @@ end
 
 	```lua
 	local a = {1, 2, 3}
-	assert(array(a).last() == 3)
+	assert(iter.new(a).last() == 3)
 
 	local a = {1, 2, 3, 4, 5}
-	assert(array(a).last() == 5)
+	assert(iter.new(a).last() == 5)
 	```
 ]=]
 function iter:last(): ...any
-	local res = {}
-	while self:next() ~= nil do
-		res = { self:_getInputTuple() }
-	end
+	local res = self:fold(true, function(_, ...)
+		return { ... }
+	end)
 
 	return table.unpack(res)
 end
@@ -530,16 +472,12 @@ end
 	type `B`, you can use `map()`, passing a closure that takes an `A` and returns a `B`.
 
 	`map()` is conceptually similar to a `for` loop. If you're doing some sort of looping for a side
-	effect, it's considered more idiomatic to use for than `map()`.
-
-	# Deviations
-	The closure can return 2 values, in which case the first is used as the key and the second as the value.
-	The iterator would immediately turn into a `dict` iterator if it wasn't one already.
+	effect, it's considered more idiomatic to use `for` than `map()`.
 
 	@return iter
 ]=]
 function iter:map(f: (...any) -> ...any)
-	return map.new(self, iter._iter, f)
+	return map.new(self, iter._new, f)
 end
 
 --[=[
@@ -551,7 +489,7 @@ end
 	@return iter
 ]=]
 function iter:mapWhile(predicate: (...any) -> ...any)
-	return mapWhile.new(self, iter._iter, predicate)
+	return mapWhile.new(self, iter._new, predicate)
 end
 
 --[=[
@@ -565,7 +503,7 @@ end
 	```lua
 	local a = {1, 2, 3}
 
-	local iterator = iter.array(a)
+	local iterator = iter.new(a)
 
 	-- A call to next() returns the next value...
 	assert(1 == iter.next())
@@ -589,7 +527,7 @@ end
 	`n` elements, otherwise it contains all of the (fewer than `n`) elements of the original iterator.
 ]=]
 function iter:take(n: number)
-	return take.new(self, iter._iter, n)
+	return take.new(self, iter._new, n)
 end
 
 --[=[
@@ -608,63 +546,52 @@ end
 ]=]
 function iter:tryFold<T>(init: T, f: (T, ...any) -> T?): T?
 	local accum = init
-	repeat
-		local hasVal = self:next() ~= nil
-		if hasVal then
-			local newValue = f(accum, self:_getInputTuple())
+	local next = { self:next() }
+	while next[1] ~= controlFlow.None do
+		local newValue = f(accum, self:_getInputTuple(nil, next[2]))
 
-			if newValue == nil then
-				return nil
-			end
-
-			if controlFlow.isBreak(newValue) then
-				return accum
-			end
-
-			-- Luau isn't able to convert T? to T
-			accum = newValue :: any
+		if newValue == nil then
+			return controlFlow.None
 		end
-	until not hasVal
+
+		if controlFlow.isBreak(newValue) then
+			return newValue
+		end
+
+		-- Luau isn't able to convert T? to T
+		accum = newValue :: any
+		next = { self:next() }
+	end
 
 	return accum
 end
 
---[[
-	For arrays, just returns the value
-
-	For dicts, returns the key and value
-
-	If enumerated, includes iteration count at the beginning for both arrays and dicts
-]]
 function iter:_getInputTuple(key, value)
 	key = key or self._lastKey
 
 	-- This can happen if the iterator is already consumed
 	if key == nil then
-		return nil
+		return controlFlow.None
 	end
 
 	value = value or self._value[key]
 
-	local res = {}
-
-	if self._enumerate then
-		table.insert(res, self._iterationCount)
+	if value == nil then
+		warn(`'iter' did not find value for key '{key}' in table. Did the input table mutate?`)
 	end
 
-	if self._type == dataTypes.dict then
-		table.insert(res, key)
-		table.insert(res, value)
-	else
-		table.insert(res, value)
+	if value == controlFlow.Nil then
+		value = nil
 	end
 
-	return table.unpack(res)
+	return key, value
 end
 
 local exports = {
-	dict = iter._dict,
-	array = iter._array,
+	new = iter.new,
+
+	Break = controlFlow.Break,
+	None = controlFlow.None,
 }
 
 return exports

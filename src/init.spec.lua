@@ -7,21 +7,21 @@ return function()
 	describe("iter", function()
 		describe("any", function()
 			it("should return true if any predicate is true", function()
-				local result = iter.array({ 1, 2, 3 }):any(function()
+				local result = iter.new({ 1, 2, 3 }):any(function()
 					return true
 				end)
 				expect(result).to.be.equal(true)
 			end)
 
 			it("should return false if all predicates are false", function()
-				local result = iter.array({ 1, 2, 3 }):any(function()
+				local result = iter.new({ 1, 2, 3 }):any(function()
 					return false
 				end)
 				expect(result).to.be.equal(false)
 			end)
 
 			it("should return false if the iterator is empty", function()
-				local result = iter.array({}):any(function()
+				local result = iter.new({}):any(function()
 					return true
 				end)
 				expect(result).to.be.equal(false)
@@ -30,11 +30,11 @@ return function()
 			it("should short circuit on the first true", function()
 				local a = { 1, 2, 3 }
 
-				local iterator = iter.array(a)
+				local iterator = iter.new(a)
 
-				expect(iterator:all(function(x)
-					return x ~= 2
-				end)).to.be.equal(false)
+				expect(iterator:any(function(_, x)
+					return x == 2
+				end)).to.be.equal(true)
 
 				-- we can still use `iter`, as there are more elements.
 				expect(iterator:next()).to.be.equal(3)
@@ -45,18 +45,24 @@ return function()
 				local numCalledMap = 0
 				local numCalledFilter = 0
 
-				local iterator = iter.array(a)
+				local iterator = iter.new(a)
 
 				expect(iterator
-					:map(function(x)
+					:map(function(i, x)
 						numCalledMap += 1
+						expect(i).to.be.a("number")
+						expect(x).to.be.a("number")
 						return -x
 					end)
-					:filter(function(_)
+					:filter(function(i, x)
 						numCalledFilter += 1
+						expect(i).to.be.a("number")
+						expect(x).to.be.a("number")
 						return true
 					end)
-					:all(function(x)
+					:all(function(i, x)
+						expect(i).to.be.a("number")
+						expect(x).to.be.a("number")
 						return x ~= -2
 					end)).to.be.equal(false)
 
@@ -70,67 +76,45 @@ return function()
 
 		describe("count", function()
 			it("should return 0 for empty iterator", function()
-				expect(iter.array({}):count()).to.be.equal(0)
-				expect(iter.dict({}):count()).to.be.equal(0)
+				expect(iter.new({}):count()).to.be.equal(0)
+				expect(iter.new({}):count()).to.be.equal(0)
 			end)
 
 			it("should return number of elements", function()
-				local result = iter.array({ 1, 2, 3 }):count()
+				local result = iter.new({ 1, 2, 3 }):count()
 				expect(result).to.be.equal(3)
 
-				result = iter.array({ a = 1, b = 2, c = 3 }):count()
+				result = iter.new({ a = 1, b = 2, c = 3 }):count()
 				expect(result).to.be.equal(3)
 			end)
 		end)
 
 		describe("collect", function()
 			it("should be immutable by default if `asMut` was not called", function()
-				local result = iter.array({}):collect()
+				local result = iter.new({}):collect()
 				expect(table.isfrozen(result)).to.be.equal(true)
 			end)
 		end)
 
 		describe("collectArray", function()
 			it("should be immutable by default if `asMut` was not called", function()
-				local result = iter.array({}):collectArray()
+				local result = iter.new({}):collectArray()
 				expect(table.isfrozen(result)).to.be.equal(true)
-			end)
-		end)
-
-		describe("enumerate", function()
-			it("should give the index and value of array.last", function()
-				local t = { "a", "b", "c" }
-				local i, value = iter.array(t):enumerate():last()
-
-				expect(i).to.be.equal(#t)
-				expect(value).to.be.equal(t[i])
-			end)
-
-			it("should give index, key, and value of dict.last", function()
-				local t = {
-					akey = "a",
-					bkey = "b",
-					ckey = "c",
-				}
-				local i, key, value = iter.dict(t):enumerate():last()
-
-				expect(i).to.be.equal(3)
-				expect(key).to.be.ok()
-				expect(value).to.be.equal(t[key])
 			end)
 		end)
 
 		describe("filter", function()
 			it("should generate new iterator of filtered values", function()
 				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:filter(function(value: number)
+				local result = iter.new(t)
+					:filter(function(_, value: number)
 						return value % 2 == 0
 					end)
 					:collect()
 
-				expect(#result).to.be.equal(1)
-				expect(result[1]).to.be.equal(2)
+				expect(result[1]).to.be.equal(nil)
+				expect(result[2]).to.be.equal(2)
+				expect(result[3]).to.be.equal(nil)
 			end)
 		end)
 
@@ -138,7 +122,7 @@ return function()
 			it("should accumulate numbers", function()
 				local a = { 1, 2, 3 }
 
-				local sum = iter.array(a):fold(0, function(acc, x)
+				local sum = iter.new(a):fold(0, function(acc, _, x)
 					return acc + x
 				end)
 
@@ -148,7 +132,7 @@ return function()
 			it("should accumulate strings", function()
 				local numbers = { 1, 2, 3, 4, 5 }
 
-				local result = iter.array(numbers):fold("0", function(acc, x)
+				local result = iter.new(numbers):fold("0", function(acc, _, x)
 					return `({acc} + {x})`
 				end)
 
@@ -161,7 +145,7 @@ return function()
 				local t = { 1, 2, 3 }
 				local calledNum = 0
 
-				iter.array(t):forEach(function(_value: number)
+				iter.new(t):forEach(function(_: number)
 					calledNum = calledNum + 1
 				end)
 
@@ -171,8 +155,9 @@ return function()
 
 		describe("last", function()
 			it("should return last element of array", function()
-				local last = iter.array({ 10, 20, 30 }):last()
+				local i, last = iter.new({ 10, 20, 30 }):last()
 
+				expect(i).to.be.equal(3)
 				expect(last).to.be.equal(30)
 			end)
 		end)
@@ -180,8 +165,8 @@ return function()
 		describe("map", function()
 			it("should generate new iterator of transformed values", function()
 				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:map(function(value: number)
+				local result = iter.new(t)
+					:map(function(_, value: number)
 						return value * 2
 					end)
 					:collect()
@@ -192,34 +177,30 @@ return function()
 				end
 			end)
 
-			it("should set values to appropriate keys when returning 2 values", function()
+			it("does not short circuit on nil", function()
 				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:map(function(value: number)
-						return value * 2, true
+				local result = iter.new(t)
+					:map(function(_, value: number)
+						return if value == 2 then nil else value * 2
 					end)
 					:collect()
 
-				for _, v in t do
-					expect(result[v * 2]).to.be.equal(true)
-				end
-			end)
-
-			it("does not short circuit on nil", function()
-				-- TODO
+				expect(result[1]).to.be.equal(2)
+				expect(result[2]).to.be.equal(nil)
+				expect(result[3]).to.be.equal(6)
 			end)
 		end)
 
 		describe("mapWhile", function()
 			it("should generate new iterator of transformed values", function()
 				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:mapWhile(function(value: number)
+				local result = iter.new(t)
+					:mapWhile(function(_, value: number)
 						return value * 2
 					end)
 					:collect()
 
-				expect(iter.dict(result):count()).to.be.equal(#t)
+				expect(iter.new(result):count()).to.be.equal(#t)
 				for i, v in result do
 					expect(v).to.be.equal(t[i] * 2)
 				end
@@ -227,37 +208,24 @@ return function()
 
 			it("should short circuit on nil", function()
 				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:mapWhile(function(value: number)
+				local result = iter.new(t)
+					:mapWhile(function(_, value: number)
 						return if value == 2 then nil else value * 2
 					end)
 					:collect()
 
-				expect(iter.dict(result):count()).to.be.equal(1)
+				expect(iter.new(result):count()).to.be.equal(1)
 				expect(result[1]).to.be.equal(2)
-			end)
-
-			it("should set values to appropriate keys when returning 2 values", function()
-				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:mapWhile(function(value: number)
-						return value * 2, true
-					end)
-					:collect()
-
-				for _, v in t do
-					expect(result[v * 2]).to.be.equal(true)
-				end
 			end)
 
 			it("should work when chained to other operations", function()
 				local t = { 1, 2, 3 }
-				local result = iter.array(t)
-					:mapWhile(function(value)
+				local result = iter.new(t)
+					:mapWhile(function(_, value)
 						return if value == 2 then nil else value
 					end)
-					:filter(function(value)
-						expect(value).to.be.an("number")
+					:filter(function(_, value)
+						expect(value).to.be.a("number")
 						return true
 					end)
 					:count()
@@ -269,19 +237,19 @@ return function()
 				local t = { 1, 2, 3, 4, 5, 6 }
 				local countMap = 0
 
-				iter.array(t)
-					:mapWhile(function(value)
+				iter.new(t)
+					:mapWhile(function(_, value)
 						countMap += 1
 						return if value == 5 then nil else value
 					end)
-					:filter(function(value)
+					:filter(function(_, value)
 						countMap += 1
 						return value <= 5
 					end)
-					:mapWhile(function(value)
+					:mapWhile(function(_, value)
 						return if value == 2 then nil else value
 					end)
-					:fold(0, function(acc, value)
+					:fold(0, function(acc, _, value)
 						return acc + value
 					end)
 
@@ -293,7 +261,7 @@ return function()
 			it("should take up to `n` elements", function()
 				local a = { 1, 2, 3, 4, 5, 6 }
 
-				local result = iter.array(a):take(3):collect()
+				local result = iter.new(a):take(3):collect()
 
 				expect(#result).to.be.equal(3)
 				expect(result[1]).to.be.equal(1)
@@ -304,7 +272,7 @@ return function()
 			it("should take all elements if total num < `n`", function()
 				local a = { 1, 2, 3 }
 
-				local result = iter.array(a):take(6):collect()
+				local result = iter.new(a):take(6):collect()
 
 				expect(#result).to.be.equal(3)
 				expect(result[1]).to.be.equal(1)
@@ -317,7 +285,7 @@ return function()
 			it("should accumulate numbers", function()
 				local a = { 1, 2, 3 }
 
-				local sum = iter.array(a):tryFold(0, function(acc, x)
+				local sum = iter.new(a):tryFold(0, function(acc, _, x)
 					return acc + x
 				end)
 
@@ -327,26 +295,26 @@ return function()
 			it("should accumulate strings", function()
 				local numbers = { 1, 2, 3, 4, 5 }
 
-				local result = iter.array(numbers):tryFold("0", function(acc, x)
+				local result = iter.new(numbers):tryFold("0", function(acc, _, x)
 					return `({acc} + {x})`
 				end)
 
 				expect(result).to.be.equal("(((((0 + 1) + 2) + 3) + 4) + 5)")
 			end)
 
-			it("should return `nil` if fn returns `nil`", function()
+			it("should return `None` if fn returns `nil`", function()
 				local numbers = { 1, 2, 3, 4, 5 }
 
-				local iterator = iter.array(numbers)
+				local iterator = iter.new(numbers)
 
-				local result = iterator:tryFold("0", function(acc, x)
+				local result = iterator:tryFold("0", function(acc, _, x)
 					if x == 3 then
 						return nil
 					end
 					return `({acc} + {x})`
 				end)
 
-				expect(result).to.be.equal(nil)
+				expect(result).to.be.equal(iter.None)
 				expect(iterator:next()).to.be.equal(4)
 			end)
 		end)

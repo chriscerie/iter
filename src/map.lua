@@ -1,30 +1,34 @@
 --!native
 --!strict
+local controlFlow = require(script.Parent.controlFlow)
+
 local map = {}
 
--- FIXME: This should convert `_type` to dict if `f` returns multiple values
 function map.new(iter, new, f: (...any) -> ...any)
-	local newIter = new(iter._value, iter._type, iter)
+	local newIter = new(iter._value, iter)
 
 	function newIter:next(): ...any
 		local next = { iter:next() }
 
-		-- This cannot return as ternary or it will break if `f` returns multiple values
-		if #next > 0 then
-			return f(unpack(next))
+		if next[1] == controlFlow.None then
+			return controlFlow.None
 		end
-		return nil
+
+		-- Must fallback to `Nil` as `_getInputTuple` uses default value for nil values
+		local newValue = f(table.unpack(next)) or controlFlow.Nil
+
+		return iter:_getInputTuple(nil, newValue)
 	end
 
 	function newIter:fold<T>(init: T, g: (T, ...any) -> T): T
-		return iter:fold(init, function(acc, ...)
-			return g(acc, f(...))
+		return iter:fold(init, function(acc, key, value)
+			return g(acc, key, f(key, value))
 		end)
 	end
 
 	function newIter:tryFold<T>(init: T, g: (T, ...any) -> T?): T?
-		return iter:tryFold(init, function(acc, ...)
-			return g(acc, f(...))
+		return iter:tryFold(init, function(acc, key, value)
+			return g(acc, key, f(key, value))
 		end)
 	end
 

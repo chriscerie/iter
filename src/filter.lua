@@ -3,7 +3,7 @@
 local filter = {}
 
 function filter.new(iter, new, predicate: (any, any) -> boolean)
-	local newIter = new(iter._value, iter._type, iter)
+	local newIter = new(iter._value, iter)
 
 	function newIter:next(): any
 		return iter:find(predicate)

@@ -79,7 +79,7 @@ With `iter`, this becomes easier. We can use `mapWhile` to keep the values until
 
 Then counting the rest of the values is easy. We can simply call `:count()` to grab the count of the remaining values.
 ```lua
-local iterator = iter.dict(a)
+local iterator = iter.new(a)
 local checkedValues = iterator
 	:mapWhile(function(_key, value)
 		return if value > 500 then nil else value

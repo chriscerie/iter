@@ -4,18 +4,23 @@ local controlFlow = require(script.Parent.controlFlow)
 
 local mapWhile = {}
 
--- FIXME: This should convert `_type` to dict if `f` returns multiple values
 function mapWhile.new(iter, new, predicate: (...any) -> ...any)
-	local newIter = new(iter._value, iter._type, iter)
+	local newIter = new(iter._value, iter)
 
 	function newIter:next(): ...any
 		local x = { iter:next() }
 
-		-- This cannot return as ternary or it will break if `f` returns multiple values
-		if #x > 0 then
-			return predicate(unpack(x))
+		if x[1] == controlFlow.None then
+			return controlFlow.None
 		end
-		return nil
+
+		local res = predicate(table.unpack(x))
+
+		if res == 0 then
+			return controlFlow.None
+		end
+
+		return iter:_getInputTuple(nil, res)
 	end
 
 	function newIter:fold<T>(init: T, g: (T, ...any) -> T): T
@@ -23,13 +28,19 @@ function mapWhile.new(iter, new, predicate: (...any) -> ...any)
 	end
 
 	function newIter:tryFold<T>(init: T, g: (T, ...any) -> T?): T?
-		return iter:tryFold(init, function(acc, ...)
-			if predicate(...) then
-				return g(acc, ...)
+		local res = iter:tryFold(init, function(acc, key, value)
+			local newValue = predicate(key, value)
+			if newValue ~= nil then
+				return g(acc, key, newValue)
 			else
 				return controlFlow.Break(acc)
 			end
 		end)
+
+		if controlFlow.isBreak(res) then
+			return res.value
+		end
+		return res
 	end
 
 	return newIter

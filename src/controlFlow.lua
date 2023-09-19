@@ -1,6 +1,20 @@
 --!strict
 local controlFlow = {}
 
+controlFlow.None = setmetatable({}, {
+	__tostring = function()
+		return `Symbol(None)`
+	end,
+})
+
+-- Since we're not wrapping non-nones as somes, we need this to differentiate between some(none) and none
+-- This represents none
+controlFlow.Nil = setmetatable({}, {
+	__tostring = function()
+		return `Symbol(Nil)`
+	end,
+})
+
 local breakMetatable = {
 	__tostring = function(self)
 		return `Break({tostring(self.value)})`
