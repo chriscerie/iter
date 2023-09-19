@@ -14,6 +14,9 @@
       "StarterPlayerScripts": {
         "testRunner": {
           "$path": "test/testRunner.client.lua"
+        },
+        "benchmarks": {
+          "$path": "benchmarks"
         }
       }
     }
