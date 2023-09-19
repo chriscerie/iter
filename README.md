@@ -96,4 +96,4 @@ print(iterator:count())
 
 ## Next Steps
 
-`iter` comes out of the box with many more features to fit complex use cases. Check out the `iter`'s official [documentation](www.chrisc.dev/iter/).
+`iter` comes out of the box with many more features to fit complex use cases. Check out the `iter`'s official [documentation](https://www.chrisc.dev/iter/).
