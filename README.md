@@ -27,6 +27,10 @@ Chaining operations and transformations in one operation makes the flow of compl
 
 By default, tables returned by `iter` are frozen. This is a good thing! Mutating data structures when you don't expect it is a major source of bugs in software. Instead, when a table returned by `iter` needs to be directly modifiable, you must be [explicit](https://www.chrisc.dev/iter/api/iter#asMut) about it.
 
+### Smart
+
+Iterators' lazy mechanism means transformations and operations don't apply until it's consumed. This enables `iter` to perform aggressive optimizations to minimize the number of iterations required.
+
 ## Installation
 
 ### Wally

@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.1.4 (September 19, 2023)
 * Added `fold`
 * Changed operations to be lazily evaluated
 * Added `take`
