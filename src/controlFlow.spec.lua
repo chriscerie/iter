@@ -11,6 +11,7 @@ return function()
 
 				expect(a).to.be.equal(b)
 				expect(a).to.never.be.equal(c)
+				expect(a).to.never.be.equal(1)
 			end)
 		end)
 	end)

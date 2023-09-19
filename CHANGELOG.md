@@ -3,6 +3,7 @@
 ## Unreleased
 * Added `fold`
 * Changed operations to be lazily evaluated
+* Added `take`
 
 ## 0.1.2 (September 17, 2023)
 * `map` can accept 2 values, which will transform data into dict and insert at specified key

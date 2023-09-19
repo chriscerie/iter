@@ -5,6 +5,7 @@ local controlFlow = require(script.controlFlow)
 local filter = require(script.filter)
 local map = require(script.map)
 local mapWhile = require(script.mapWhile)
+local take = require(script.take)
 
 --- @class iter
 local iter = {}
@@ -578,6 +579,17 @@ end
 function iter:next(): any
 	self:_next(self._lastKey)
 	return self:_getInputTuple()
+end
+
+--[=[
+	Creates an iterator that yields the first `n` elements, or fewer if the underlying iterator ends sooner.
+
+	`take(n)` yields elements until `n` elements are yielded or the end of the iterator is reached (whichever
+	happens first). The returned iterator is a prefix of length `n` if the original iterator contains at least
+	`n` elements, otherwise it contains all of the (fewer than `n`) elements of the original iterator.
+]=]
+function iter:take(n: number)
+	return take.new(self, iter._iter, n)
 end
 
 --[=[

@@ -3,7 +3,7 @@ local controlFlow = {}
 
 local breakMetatable = {
 	__tostring = function(self)
-		return "Break(" .. tostring(self.value) .. ")"
+		return `Break({tostring(self.value)})`
 	end,
 	__eq = function(self, other)
 		return getmetatable(self) == getmetatable(other) and self.value == other.value

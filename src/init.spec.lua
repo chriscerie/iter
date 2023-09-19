@@ -289,6 +289,30 @@ return function()
 			end)
 		end)
 
+		describe("take", function()
+			it("should take up to `n` elements", function()
+				local a = { 1, 2, 3, 4, 5, 6 }
+
+				local result = iter.array(a):take(3):collect()
+
+				expect(#result).to.be.equal(3)
+				expect(result[1]).to.be.equal(1)
+				expect(result[2]).to.be.equal(2)
+				expect(result[3]).to.be.equal(3)
+			end)
+
+			it("should take all elements if total num < `n`", function()
+				local a = { 1, 2, 3 }
+
+				local result = iter.array(a):take(6):collect()
+
+				expect(#result).to.be.equal(3)
+				expect(result[1]).to.be.equal(1)
+				expect(result[2]).to.be.equal(2)
+				expect(result[3]).to.be.equal(3)
+			end)
+		end)
+
 		describe("tryFold", function()
 			it("should accumulate numbers", function()
 				local a = { 1, 2, 3 }
