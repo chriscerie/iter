@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v2.3.1">
 <title data-rh="true">iter | iter</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://chriscerie.github.io/iter/api/iter"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="iter | iter"><link data-rh="true" rel="canonical" href="https://chriscerie.github.io/iter/api/iter"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="en"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="x-default"><link rel="stylesheet" href="/iter/assets/css/styles.fdfd902f.css">
-<link rel="preload" href="/iter/assets/js/runtime~main.1cef3938.js" as="script">
-<link rel="preload" href="/iter/assets/js/main.95d549d5.js" as="script">
+<link rel="preload" href="/iter/assets/js/runtime~main.a6f05167.js" as="script">
+<link rel="preload" href="/iter/assets/js/main.ae606046.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
-<div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/iter/"><b class="navbar__title text--truncate">iter</b></a><a class="navbar__item navbar__link" href="/iter/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/iter/api/">API</a><a class="navbar__item navbar__link" href="/iter/changelog">Changelog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/iter/api/iter">iter</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">iter</span></h1><div class="luaClassTags_EipM"></div><div></div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a href="#new" class="hash-link" aria-label="Direct link to new" title="Direct link to new">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L19"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><code>value<!-- -->: </code><code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS">any</code><code>]</code></span><code>: </code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+<div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/iter/"><b class="navbar__title text--truncate">iter</b></a><a class="navbar__item navbar__link" href="/iter/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/iter/api/">API</a><a class="navbar__item navbar__link" href="/iter/changelog">Changelog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input type="search" id="search_input_react" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/iter/api/iter">iter</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">iter</span></h1><div class="luaClassTags_EipM"></div><div></div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a href="#new" class="hash-link" aria-label="Direct link to new" title="Direct link to new">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L20"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><code>value<!-- -->: </code><code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS">any</code><code>]</code></span><code>: </code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Constructs new <code>iter</code></p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="all"><code style="text-decoration:none">all</code><a href="#all" class="hash-link" aria-label="Direct link to all" title="Direct link to all">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L101"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">all</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="all"><code style="text-decoration:none">all</code><a href="#all" class="hash-link" aria-label="Direct link to all" title="Direct link to all">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L102"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">all</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
 <p>Tests if every element of the iterator matches a predicate.</p>
 <p>
   <code>all()</code> takes a closure that returns true or false. It applies this closure
@@ -48,14 +48,14 @@
 <span class="token comment">-- we can still use `iter`, as there are more elements.</span>
 <span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">next</span><span class="token punctuation">(</span>iterator<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="asMut"><code style="text-decoration:none">asMut</code><a href="#asMut" class="hash-link" aria-label="Direct link to asMut" title="Direct link to asMut">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L121"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">asMut</code><code>(</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="asMut"><code style="text-decoration:none">asMut</code><a href="#asMut" class="hash-link" aria-label="Direct link to asMut" title="Direct link to asMut">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L122"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">asMut</code><code>(</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Ensures <code>table.freeze</code> doesn't get called when iterator gets collected.</p>
 <h1>Deviations</h1>
 <p>
   In Rust this is done by specifying <code>mut</code> to the assigning variable,
   but this is not a feature in Lua.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="any"><code style="text-decoration:none">any</code><a href="#any" class="hash-link" aria-label="Direct link to any" title="Direct link to any">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L170"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">any</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="any"><code style="text-decoration:none">any</code><a href="#any" class="hash-link" aria-label="Direct link to any" title="Direct link to any">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L171"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">any</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
 <p>Tests if any element of the iterator matches a predicate.</p>
 <p>
   <code>any()</code> takes a function that returns <code>true</code> or <code>false</code>. It applies this
@@ -92,14 +92,14 @@
 <span class="token comment">-- we can still use `iter`, as there are more elements.</span>
 <span class="token function">assert</span><span class="token punctuation">(</span><span class="token function">next</span><span class="token punctuation">(</span>iterator<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="count"><code style="text-decoration:none">count</code><a href="#count" class="hash-link" aria-label="Direct link to count" title="Direct link to count">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L191"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">count</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="count"><code style="text-decoration:none">count</code><a href="#count" class="hash-link" aria-label="Direct link to count" title="Direct link to count">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L192"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">count</code><code>(</code><code>) → </code><code class="blue_P4bS">number</code></div><div>
 <p>Consumes the iterator, counting the number of iterations and returning it.</p>
 <p>
   This method will call [<code>next</code>] repeatedly until <code>nil</code> is encountered, returning the
   number of times it saw values. Note that [<code>next</code>] has to be called at least once even
   if the iterator does not have any elements.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="collect"><code style="text-decoration:none">collect</code><a href="#collect" class="hash-link" aria-label="Direct link to collect" title="Direct link to collect">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L210"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">collect</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS">any</code><code>]</code></span><code>: </code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="collect"><code style="text-decoration:none">collect</code><a href="#collect" class="hash-link" aria-label="Direct link to collect" title="Direct link to collect">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L211"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">collect</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS">any</code><code>]</code></span><code>: </code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code></div><div>
 <p>Transforms an iterator into a table.</p>
 <p>
   <code>collect()</code> can take anything iterable, and turn it into a relevant table.
@@ -112,7 +112,7 @@
 </p>
 <h1>Deviations</h1>
 <p>The returned table is frozen by default if [<code>asMut</code>] was never called.</p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="collectArray"><code style="text-decoration:none">collectArray</code><a href="#collectArray" class="hash-link" aria-label="Direct link to collectArray" title="Direct link to collectArray">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L233"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">collectArray</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="collectArray"><code style="text-decoration:none">collectArray</code><a href="#collectArray" class="hash-link" aria-label="Direct link to collectArray" title="Direct link to collectArray">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L234"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">collectArray</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><code class="blue_P4bS">any</code><code class="purple_ieR2">}</code></div><div>
 <p>Same thing as [<code>collect</code>], but turns table into arrays of its values and discards its keys.</p>
 <h1>Deviations</h1>
 <ul>
@@ -122,13 +122,35 @@
   </li>
   <li>The returned table is frozen by default if [<code>asMut</code>] was never called.</li>
 </ul>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="filter"><code style="text-decoration:none">filter</code><a href="#filter" class="hash-link" aria-label="Direct link to filter" title="Direct link to filter">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L256"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">filter</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="filter"><code style="text-decoration:none">filter</code><a href="#filter" class="hash-link" aria-label="Direct link to filter" title="Direct link to filter">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L257"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">filter</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Creates an iterator which uses a closure to determine if an element should be yielded.</p>
 <p>
   Given an element the closure must return true or false. The returned iterator will yield
   only the elements for which the closure returns true.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="find"><code style="text-decoration:none">find</code><a href="#find" class="hash-link" aria-label="Direct link to find" title="Direct link to find">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L270"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">find</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS">...any?</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="filterMap"><code style="text-decoration:none">filterMap</code><a href="#filterMap" class="hash-link" aria-label="Direct link to filterMap" title="Direct link to filterMap">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L288"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">filterMap</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any?</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Creates an iterator that both filters and maps.</p>
+<p>The returned iterator yields only the values for which the supplied closure returns non-nil.</p>
+<p><code>filterMap</code> can be used to make chains of [<code>filter</code>] and [<code>map</code>] more concise.</p>
+<h1>Examples</h1>
+<p>Basic usage:</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"1"</span><span class="token punctuation">,</span> <span class="token string">"two"</span><span class="token punctuation">,</span> <span class="token string">"hi"</span><span class="token punctuation">,</span> <span class="token string">"four"</span><span class="token punctuation">,</span> <span class="token string">"5"</span><span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> iterator <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">filterMap</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token function">tonumber</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+iterator<span class="token punctuation">:</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">5</span>
+iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> iter<span class="token punctuation">.</span>None
+</code></pre>
+<h1>Deviations</h1>
+<p>
+  <code>filterMap</code> will assume arrays the table is an array and will slide entries down if values are
+  removed as long as the table is contiguous. The first time a non-array key is encountered (key
+  that jumps or non-numeric key), <code>filterMap</code> will act the same as <code>map</code>.
+</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="find"><code style="text-decoration:none">find</code><a href="#find" class="hash-link" aria-label="Direct link to find" title="Direct link to find">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L302"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">find</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">boolean</code><code>) → </code><code class="blue_P4bS">...any?</code></div><div>
 <p>Searches for an element of an iterator that satisfies a predicate.</p>
 <p>
   <code>find()</code> takes a closure that returns true or false. It applies this closure to each element
@@ -139,7 +161,19 @@
   <code>find()</code> is short-circuiting; in other words, it will stop processing as soon as the closure
   returns <code>true</code>
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="fold"><code style="text-decoration:none">fold</code><a href="#fold" class="hash-link" aria-label="Direct link to fold" title="Direct link to fold">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L332"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">fold</code><code>(</code><div class="inset_uKQm"><div><code>init<!-- -->: </code><code class="blue_P4bS">T</code><code>,</code></div><div><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">T</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">...any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">T</code></div></div><code>) → </code><code class="blue_P4bS">T</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="findMap"><code style="text-decoration:none">findMap</code><a href="#findMap" class="hash-link" aria-label="Direct link to findMap" title="Direct link to findMap">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L333"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">findMap</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Applies function to the elements of iterator and returns the first non-nil result.</p>
+<p><code>iter:findMap(f)</code> is equivalent to <code>iter:filterMap(f):next()</code>.</p>
+<h1>Examples</h1>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"lol"</span><span class="token punctuation">,</span> <span class="token string">"hi"</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">,</span> <span class="token string">"5"</span><span class="token punctuation">}</span>
+
+<span class="token keyword">local</span> _<span class="token punctuation">,</span> firstNumber <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">findMap</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>_k<span class="token punctuation">,</span> s<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> <span class="token function">tonumber</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+
+<span class="token function">assert</span><span class="token punctuation">(</span>firstNumber <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="fold"><code style="text-decoration:none">fold</code><a href="#fold" class="hash-link" aria-label="Direct link to fold" title="Direct link to fold">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L392"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">fold</code><code>(</code><div class="inset_uKQm"><div><code>init<!-- -->: </code><code class="blue_P4bS">T</code><code>,</code></div><div><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">T</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">...any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">T</code></div></div><code>) → </code><code class="blue_P4bS">T</code></div><div>
 <p>Folds every element into an accumulator by applying an operation, returning the final result.</p>
 <p>
   <code>fold()</code> takes two arguments: an initial value, and a closure with two arguments: an
@@ -180,7 +214,7 @@
 
 <span class="token function">assert</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> <span class="token string">"(((((0 + 1) + 2) + 3) + 4) + 5)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="forEach"><code style="text-decoration:none">forEach</code><a href="#forEach" class="hash-link" aria-label="Direct link to forEach" title="Direct link to forEach">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L367"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">forEach</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="forEach"><code style="text-decoration:none">forEach</code><a href="#forEach" class="hash-link" aria-label="Direct link to forEach" title="Direct link to forEach">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L427"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">forEach</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Calls a closure on each element of an iterator.</p>
 <p>
   This is equivalent to using a for loop on the iterator, although break
@@ -203,7 +237,7 @@
 		<span class="token function">print</span><span class="token punctuation">(</span>`<span class="token punctuation">{</span>i<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token punctuation">{</span>x<span class="token punctuation">}</span>`<span class="token punctuation">)</span>
 	<span class="token keyword">end</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="inspect"><code style="text-decoration:none">inspect</code><a href="#inspect" class="hash-link" aria-label="Direct link to inspect" title="Direct link to inspect">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L432"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">inspect</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="inspect"><code style="text-decoration:none">inspect</code><a href="#inspect" class="hash-link" aria-label="Direct link to inspect" title="Direct link to inspect">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L492"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">inspect</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="purple_ieR2">(</code><code class="purple_ieR2">)</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Does something with each element of an iterator, passing the value on.</p>
 <p>
   When using iterators, you'll often chain several of them together. While working
@@ -258,7 +292,7 @@ made it through filter: 2
 about to filter: 3
 6
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="last"><code style="text-decoration:none">last</code><a href="#last" class="hash-link" aria-label="Direct link to last" title="Direct link to last">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L456"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">last</code><code>(</code><code>) → </code><code class="blue_P4bS">...any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="last"><code style="text-decoration:none">last</code><a href="#last" class="hash-link" aria-label="Direct link to last" title="Direct link to last">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L516"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">last</code><code>(</code><code>) → </code><code class="blue_P4bS">...any</code></div><div>
 <p>Consumes the iterator, returning the last element.</p>
 <p>
   For non-arrays, this method will evaluate the iterator until it returns <code>nil</code>.
@@ -273,7 +307,7 @@ about to filter: 3
 <span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span>
 <span class="token function">assert</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="map"><code style="text-decoration:none">map</code><a href="#map" class="hash-link" aria-label="Direct link to map" title="Direct link to map">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L479"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">map</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">...any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="map"><code style="text-decoration:none">map</code><a href="#map" class="hash-link" aria-label="Direct link to map" title="Direct link to map">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L539"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">map</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">...any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Takes a closure and creates an iterator which calls that closure on each element.</p>
 <p>
   <code>map()</code> transforms one iterator into another. It produces a new iterator which calls this
@@ -288,13 +322,13 @@ about to filter: 3
   <code>map()</code> is conceptually similar to a <code>for</code> loop. If you're doing some sort of looping for a side
   effect, it's considered more idiomatic to use <code>for</code> than <code>map()</code>.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapWhile"><code style="text-decoration:none">mapWhile</code><a href="#mapWhile" class="hash-link" aria-label="Direct link to mapWhile" title="Direct link to mapWhile">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L491"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">mapWhile</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">...any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapWhile"><code style="text-decoration:none">mapWhile</code><a href="#mapWhile" class="hash-link" aria-label="Direct link to mapWhile" title="Direct link to mapWhile">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L551"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">mapWhile</code><code>(</code><code>predicate<!-- -->: </code><code class="purple_ieR2">(</code><code class="blue_P4bS">...any</code><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">...any</code><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/iter/api/iter">iter</a></code></div><div>
 <p>Creates an iterator that both yields elements based on a predicate and maps.</p>
 <p>
   <code>mapWhile()</code> takes a function as an argument. It will call this function on each element
   of the iterator, and yield elements while it returns non-nil.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="next"><code style="text-decoration:none">next</code><a href="#next" class="hash-link" aria-label="Direct link to next" title="Direct link to next">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L517"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">next</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="next"><code style="text-decoration:none">next</code><a href="#next" class="hash-link" aria-label="Direct link to next" title="Direct link to next">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L577"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">next</code><code>(</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
 <p>Advances the iterator and returns the next value.</p>
 <p>Returns <code>nil</code> when iteration is finished.</p>
 <h1>Examples</h1>
@@ -311,14 +345,35 @@ about to filter: 3
 <span class="token comment">-- ... and then `nil` once it's over.</span>
 <span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword">nil</span> <span class="token operator">==</span> iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="take"><code style="text-decoration:none">take</code><a href="#take" class="hash-link" aria-label="Direct link to take" title="Direct link to take">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L529"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">take</code><code>(</code><code>n<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="reduce"><code style="text-decoration:none">reduce</code><a href="#reduce" class="hash-link" aria-label="Direct link to reduce" title="Direct link to reduce">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L606"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">reduce</code><code>(</code><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">any</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">any</code></div><div>
+<p>Reduces the elements to a single one, by repeatedly applying a reducing operation.</p>
+<p>If the iterator is empty, returns <code>iter.None</code>; otherwise, returns the result of the reduction.</p>
+<p>
+  The reducing function is a closure with two arguments: an 'accumulator', and an element.For iterators
+  with at least one element, this is the same as [<code>fold</code>] with the first element of the iterator as the
+  initial accumulator value, folding every subsequent element into it.
+</p>
+<h1>Example</h1>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> a <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">...</span><span class="token punctuation">,</span> <span class="token number">10</span> <span class="token punctuation">}</span>
+<span class="token keyword">local</span> reduced <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> e<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> acc <span class="token operator">+</span> e
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+<span class="token function">assert</span><span class="token punctuation">(</span>reduced <span class="token operator">==</span> <span class="token number">45</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- Which is equivalent to doing it with `fold`:</span>
+<span class="token keyword">local</span> folded <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token function">fold</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> e<span class="token punctuation">)</span>
+	<span class="token keyword">return</span> acc <span class="token operator">+</span> e
+<span class="token keyword">end</span><span class="token punctuation">)</span>
+<span class="token function">assert</span><span class="token punctuation">(</span>reduced <span class="token operator">==</span> folded<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="take"><code style="text-decoration:none">take</code><a href="#take" class="hash-link" aria-label="Direct link to take" title="Direct link to take">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L623"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">take</code><code>(</code><code>n<!-- -->: </code><code class="blue_P4bS">number</code><code>) → </code><code>(</code><code>)</code></div><div>
 <p>Creates an iterator that yields the first <code>n</code> elements, or fewer if the underlying iterator ends sooner.</p>
 <p>
   <code>take(n)</code> yields elements until <code>n</code> elements are yielded or the end of the iterator is reached (whichever
   happens first). The returned iterator is a prefix of length <code>n</code> if the original iterator contains at least
   <code>n</code> elements, otherwise it contains all of the (fewer than <code>n</code>) elements of the original iterator.
 </p>
-</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="tryFold"><code style="text-decoration:none">tryFold</code><a href="#tryFold" class="hash-link" aria-label="Direct link to tryFold" title="Direct link to tryFold">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L547"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">tryFold</code><code>(</code><div class="inset_uKQm"><div><code>init<!-- -->: </code><code class="blue_P4bS">T</code><code>,</code></div><div><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">T</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">...any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">T?</code></div></div><code>) → </code><code class="blue_P4bS">T?</code></div><div>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="tryFold"><code style="text-decoration:none">tryFold</code><a href="#tryFold" class="hash-link" aria-label="Direct link to tryFold" title="Direct link to tryFold">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/chriscerie/iter/blob/main/src/init.lua#L641"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>iter<!-- -->:</code><code class="green_DgR4">tryFold</code><code>(</code><div class="inset_uKQm"><div><code>init<!-- -->: </code><code class="blue_P4bS">T</code><code>,</code></div><div><code>f<!-- -->: </code><code class="purple_ieR2">(</code><div class="inset_uKQm"><code class="blue_P4bS">T</code><code class="purple_ieR2">,</code></div><div class="inset_uKQm"><code class="blue_P4bS">...any</code></div><code class="purple_ieR2">)</code><code class="purple_ieR2"> → </code><code class="blue_P4bS">T?</code></div></div><code>) → </code><code class="blue_P4bS">T?</code></div><div>
 <p>
   An iterator method that applies a function as long as it returns successfully, producing a single,
   final value.
@@ -354,7 +409,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;static&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 19,
+                &quot;line&quot;: 20,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -376,7 +431,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 101,
+                &quot;line&quot;: 102,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -392,7 +447,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 121,
+                &quot;line&quot;: 122,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -414,7 +469,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 170,
+                &quot;line&quot;: 171,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -430,7 +485,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 191,
+                &quot;line&quot;: 192,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -446,7 +501,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 210,
+                &quot;line&quot;: 211,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -462,7 +517,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 233,
+                &quot;line&quot;: 234,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -484,7 +539,24 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 256,
+                &quot;line&quot;: 257,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;filterMap&quot;,
+            &quot;desc&quot;: &quot;Creates an iterator that both filters and maps.\n\nThe returned iterator yields only the values for which the supplied closure returns non-nil.\n\n`filterMap` can be used to make chains of [`filter`] and [`map`] more concise.\n\n# Examples\nBasic usage:\n\n```lua\nlocal a = {\&quot;1\&quot;, \&quot;two\&quot;, \&quot;hi\&quot;, \&quot;four\&quot;, \&quot;5\&quot;}\n\nlocal iterator = iter.new(a):filterMap(function(s)\n\treturn tonumber(a)\nend)\n\niterator:next() -&gt; 1, 1\niterator.next() -&gt; 1, 5\niterator.next() -&gt; iter.None\n```\n\n# Deviations\n`filterMap` will assume arrays the table is an array and will slide entries down if values are\nremoved as long as the table is contiguous. The first time a non-array key is encountered (key\nthat jumps or non-numeric key), `filterMap` will act the same as `map`.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;f&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(any, any) -&gt; any?&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 288,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -495,7 +567,7 @@ about to filter: 3
                 {
                     &quot;name&quot;: &quot;predicate&quot;,
                     &quot;desc&quot;: &quot;&quot;,
-                    &quot;lua_type&quot;: &quot;(...any) -&gt; boolean&quot;
+                    &quot;lua_type&quot;: &quot;(any, any) -&gt; boolean&quot;
                 }
             ],
             &quot;returns&quot;: [
@@ -506,7 +578,24 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 270,
+                &quot;line&quot;: 302,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;findMap&quot;,
+            &quot;desc&quot;: &quot;Applies function to the elements of iterator and returns the first non-nil result.\n\n`iter:findMap(f)` is equivalent to `iter:filterMap(f):next()`.\n\n# Examples\n```lua\nlocal a = {\&quot;lol\&quot;, \&quot;hi\&quot;, \&quot;2\&quot;, \&quot;5\&quot;}\n\nlocal _, firstNumber = iter.new(a):findMap(function(_k, s)\n\treturn tonumber(s)\nend)\n\nassert(firstNumber == 2)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;f&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(any, any) -&gt; any&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 333,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -533,7 +622,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 332,
+                &quot;line&quot;: 392,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -550,7 +639,7 @@ about to filter: 3
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 367,
+                &quot;line&quot;: 427,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -567,7 +656,7 @@ about to filter: 3
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 432,
+                &quot;line&quot;: 492,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -583,7 +672,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 456,
+                &quot;line&quot;: 516,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -605,7 +694,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 479,
+                &quot;line&quot;: 539,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -627,7 +716,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 491,
+                &quot;line&quot;: 551,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -643,7 +732,29 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 517,
+                &quot;line&quot;: 577,
+                &quot;path&quot;: &quot;src/init.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;reduce&quot;,
+            &quot;desc&quot;: &quot;Reduces the elements to a single one, by repeatedly applying a reducing operation.\n\nIf the iterator is empty, returns `iter.None`; otherwise, returns the result of the reduction.\n\nThe reducing function is a closure with two arguments: an &#x27;accumulator&#x27;, and an element.For iterators\nwith at least one element, this is the same as [`fold`] with the first element of the iterator as the\ninitial accumulator value, folding every subsequent element into it.\n\n# Example\n```lua\nlocal a = { 1, 2, ..., 10 }\nlocal reduced = iter.new(a):reduce(function(acc, e)\n\treturn acc + e\nend)\nassert(reduced == 45)\n\n-- Which is equivalent to doing it with `fold`:\nlocal folded = iter.new(a):fold(0, function(acc, e)\n\treturn acc + e\nend)\nassert(reduced == folded)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;f&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;(any, any) -&gt; any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any\n&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 606,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -660,7 +771,7 @@ about to filter: 3
             &quot;returns&quot;: [],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 529,
+                &quot;line&quot;: 623,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         },
@@ -687,7 +798,7 @@ about to filter: 3
             ],
             &quot;function_type&quot;: &quot;method&quot;,
             &quot;source&quot;: {
-                &quot;line&quot;: 547,
+                &quot;line&quot;: 641,
                 &quot;path&quot;: &quot;src/init.lua&quot;
             }
         }
@@ -697,11 +808,11 @@ about to filter: 3
     &quot;name&quot;: &quot;iter&quot;,
     &quot;desc&quot;: &quot;&quot;,
     &quot;source&quot;: {
-        &quot;line&quot;: 11,
+        &quot;line&quot;: 12,
         &quot;path&quot;: &quot;src/init.lua&quot;
     }
-}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">:all</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">:any</a></li><li><a href="#asMut" class="table-of-contents__link toc-highlight">:asMut</a></li><li><a href="#collect" class="table-of-contents__link toc-highlight">:collect</a></li><li><a href="#collectArray" class="table-of-contents__link toc-highlight">:collectArray</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">:count</a></li><li><a href="#filter" class="table-of-contents__link toc-highlight">:filter</a></li><li><a href="#find" class="table-of-contents__link toc-highlight">:find</a></li><li><a href="#fold" class="table-of-contents__link toc-highlight">:fold</a></li><li><a href="#forEach" class="table-of-contents__link toc-highlight">:forEach</a></li><li><a href="#inspect" class="table-of-contents__link toc-highlight">:inspect</a></li><li><a href="#last" class="table-of-contents__link toc-highlight">:last</a></li><li><a href="#map" class="table-of-contents__link toc-highlight">:map</a></li><li><a href="#mapWhile" class="table-of-contents__link toc-highlight">:mapWhile</a></li><li><a href="#next" class="table-of-contents__link toc-highlight">:next</a></li><li><a href="#take" class="table-of-contents__link toc-highlight">:take</a></li><li><a href="#tryFold" class="table-of-contents__link toc-highlight">:tryFold</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer__link-item">License<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 chriscerie. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
-<script src="/iter/assets/js/runtime~main.1cef3938.js"></script>
-<script src="/iter/assets/js/main.95d549d5.js"></script>
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">:all</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">:any</a></li><li><a href="#asMut" class="table-of-contents__link toc-highlight">:asMut</a></li><li><a href="#collect" class="table-of-contents__link toc-highlight">:collect</a></li><li><a href="#collectArray" class="table-of-contents__link toc-highlight">:collectArray</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">:count</a></li><li><a href="#filter" class="table-of-contents__link toc-highlight">:filter</a></li><li><a href="#filterMap" class="table-of-contents__link toc-highlight">:filterMap</a></li><li><a href="#find" class="table-of-contents__link toc-highlight">:find</a></li><li><a href="#findMap" class="table-of-contents__link toc-highlight">:findMap</a></li><li><a href="#fold" class="table-of-contents__link toc-highlight">:fold</a></li><li><a href="#forEach" class="table-of-contents__link toc-highlight">:forEach</a></li><li><a href="#inspect" class="table-of-contents__link toc-highlight">:inspect</a></li><li><a href="#last" class="table-of-contents__link toc-highlight">:last</a></li><li><a href="#map" class="table-of-contents__link toc-highlight">:map</a></li><li><a href="#mapWhile" class="table-of-contents__link toc-highlight">:mapWhile</a></li><li><a href="#next" class="table-of-contents__link toc-highlight">:next</a></li><li><a href="#reduce" class="table-of-contents__link toc-highlight">:reduce</a></li><li><a href="#take" class="table-of-contents__link toc-highlight">:take</a></li><li><a href="#tryFold" class="table-of-contents__link toc-highlight">:tryFold</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer__link-item">License<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 chriscerie. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+<script src="/iter/assets/js/runtime~main.a6f05167.js"></script>
+<script src="/iter/assets/js/main.ae606046.js"></script>
 </body>
 </html>
