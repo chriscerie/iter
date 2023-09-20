@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v2.3.1">
 <title data-rh="true">iter | iter</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://chriscerie.github.io/iter/api/iter"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="iter | iter"><link data-rh="true" rel="canonical" href="https://chriscerie.github.io/iter/api/iter"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="en"><link data-rh="true" rel="alternate" href="https://chriscerie.github.io/iter/api/iter" hreflang="x-default"><link rel="stylesheet" href="/iter/assets/css/styles.fdfd902f.css">
-<link rel="preload" href="/iter/assets/js/runtime~main.a6f05167.js" as="script">
-<link rel="preload" href="/iter/assets/js/main.ae606046.js" as="script">
+<link rel="preload" href="/iter/assets/js/runtime~main.ccd9cc11.js" as="script">
+<link rel="preload" href="/iter/assets/js/main.9af7ce4c.js" as="script">
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,e("light"))}()</script><div id="__docusaurus">
@@ -222,10 +222,8 @@ iterator<span class="token punctuation">.</span><span class="token function">nex
   to use a for loop, but for_each may be more legible when processing items at
   the end of longer iterator chains.
 </p>
-<p>
-  #Examples
-  Basic usage:
-</p>
+<h1>Examples</h1>
+<p>Basic usage:</p>
 <pre class="language-lua"><code class="language-lua">iter<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token punctuation">:</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>_<span class="token punctuation">,</span> x<span class="token punctuation">:</span> number<span class="token punctuation">)</span>
 		<span class="token keyword">return</span> x <span class="token operator">*</span> <span class="token number">100</span>
@@ -628,7 +626,7 @@ about to filter: 3
         },
         {
             &quot;name&quot;: &quot;forEach&quot;,
-            &quot;desc&quot;: &quot;Calls a closure on each element of an iterator.\n\nThis is equivalent to using a for loop on the iterator, although break\nand continue are not possible from a closure. It&#x27;s generally more idiomatic\nto use a for loop, but for_each may be more legible when processing items at\nthe end of longer iterator chains.\n\n#Examples\nBasic usage:\n\n```lua\niter.new({ 0, 1, 2 })\n\t:map(function(_, x: number)\n\t\treturn x * 100\n\tend)\n\t:filter(function(i: number, x: number)\n\t\treturn (i + x) % 3 == 0\n\tend)\n\t:for_each(function(i: number, x: number)\n\t\tprint(`{i}:{x}`)\n\tend)\n```&quot;,
+            &quot;desc&quot;: &quot;Calls a closure on each element of an iterator.\n\nThis is equivalent to using a for loop on the iterator, although break\nand continue are not possible from a closure. It&#x27;s generally more idiomatic\nto use a for loop, but for_each may be more legible when processing items at\nthe end of longer iterator chains.\n\n# Examples\nBasic usage:\n\n```lua\niter.new({ 0, 1, 2 })\n\t:map(function(_, x: number)\n\t\treturn x * 100\n\tend)\n\t:filter(function(i: number, x: number)\n\t\treturn (i + x) % 3 == 0\n\tend)\n\t:for_each(function(i: number, x: number)\n\t\tprint(`{i}:{x}`)\n\tend)\n```&quot;,
             &quot;params&quot;: [
                 {
                     &quot;name&quot;: &quot;f&quot;,
@@ -812,7 +810,7 @@ about to filter: 3
         &quot;path&quot;: &quot;src/init.lua&quot;
     }
 }</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#types" class="table-of-contents__link toc-highlight">Types</a></li><li><a href="#properties" class="table-of-contents__link toc-highlight">Properties</a></li><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#all" class="table-of-contents__link toc-highlight">:all</a></li><li><a href="#any" class="table-of-contents__link toc-highlight">:any</a></li><li><a href="#asMut" class="table-of-contents__link toc-highlight">:asMut</a></li><li><a href="#collect" class="table-of-contents__link toc-highlight">:collect</a></li><li><a href="#collectArray" class="table-of-contents__link toc-highlight">:collectArray</a></li><li><a href="#count" class="table-of-contents__link toc-highlight">:count</a></li><li><a href="#filter" class="table-of-contents__link toc-highlight">:filter</a></li><li><a href="#filterMap" class="table-of-contents__link toc-highlight">:filterMap</a></li><li><a href="#find" class="table-of-contents__link toc-highlight">:find</a></li><li><a href="#findMap" class="table-of-contents__link toc-highlight">:findMap</a></li><li><a href="#fold" class="table-of-contents__link toc-highlight">:fold</a></li><li><a href="#forEach" class="table-of-contents__link toc-highlight">:forEach</a></li><li><a href="#inspect" class="table-of-contents__link toc-highlight">:inspect</a></li><li><a href="#last" class="table-of-contents__link toc-highlight">:last</a></li><li><a href="#map" class="table-of-contents__link toc-highlight">:map</a></li><li><a href="#mapWhile" class="table-of-contents__link toc-highlight">:mapWhile</a></li><li><a href="#next" class="table-of-contents__link toc-highlight">:next</a></li><li><a href="#reduce" class="table-of-contents__link toc-highlight">:reduce</a></li><li><a href="#take" class="table-of-contents__link toc-highlight">:take</a></li><li><a href="#tryFold" class="table-of-contents__link toc-highlight">:tryFold</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/chriscerie/iter/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="footer__link-item">License<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 chriscerie. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
-<script src="/iter/assets/js/runtime~main.a6f05167.js"></script>
-<script src="/iter/assets/js/main.ae606046.js"></script>
+<script src="/iter/assets/js/runtime~main.ccd9cc11.js"></script>
+<script src="/iter/assets/js/main.9af7ce4c.js"></script>
 </body>
 </html>
