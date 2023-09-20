@@ -408,7 +408,7 @@ end
 	to use a for loop, but for_each may be more legible when processing items at
 	the end of longer iterator chains.
 
-	#Examples
+	# Examples
 	Basic usage:
 
 	```lua
