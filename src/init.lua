@@ -3,6 +3,7 @@
 
 local controlFlow = require(script.controlFlow)
 local filter = require(script.filter)
+local filterMap = require(script.filterMap)
 local map = require(script.map)
 local mapWhile = require(script.mapWhile)
 local take = require(script.take)
@@ -258,6 +259,37 @@ function iter:filter(predicate: (any, any) -> boolean)
 end
 
 --[=[
+	Creates an iterator that both filters and maps.
+
+	The returned iterator yields only the values for which the supplied closure returns non-nil.
+
+	`filterMap` can be used to make chains of [`filter`] and [`map`] more concise.
+
+	# Examples
+	Basic usage:
+
+	```lua
+	local a = {"1", "two", "hi", "four", "5"}
+
+	local iterator = iter.new(a):filterMap(function(s)
+		return tonumber(a)
+	end)
+
+	iterator:next() -> 1, 1
+	iterator.next() -> 1, 5
+	iterator.next() -> iter.None
+	```
+
+	# Deviations
+	`filterMap` will assume arrays the table is an array and will slide entries down if values are
+	removed as long as the table is contiguous. The first time a non-array key is encountered (key
+	that jumps or non-numeric key), `filterMap` will act the same as `map`.
+]=]
+function iter:filterMap(f: (any, any) -> any?)
+	return filterMap.new(self, iter._new, f)
+end
+
+--[=[
 	Searches for an element of an iterator that satisfies a predicate.
 
 	`find()` takes a closure that returns true or false. It applies this closure to each element
@@ -267,10 +299,10 @@ end
 	`find()` is short-circuiting; in other words, it will stop processing as soon as the closure
 	returns `true`
 ]=]
-function iter:find(predicate: (...any) -> boolean): ...any?
-	local res = self:tryFold(false, function(_, i, x)
-		if predicate(i, x) then
-			return controlFlow.Break({ i, x })
+function iter:find(predicate: (any, any) -> boolean): ...any?
+	local res = self:tryFold(false, function(_, key, value)
+		if predicate(key, value) then
+			return controlFlow.Break({ key, value })
 		end
 		return false
 	end)
@@ -280,6 +312,34 @@ function iter:find(predicate: (...any) -> boolean): ...any?
 	end
 
 	return controlFlow.None
+end
+
+--[=[
+	Applies function to the elements of iterator and returns the first non-nil result.
+
+	`iter:findMap(f)` is equivalent to `iter:filterMap(f):next()`.
+
+	# Examples
+	```lua
+	local a = {"lol", "hi", "2", "5"}
+
+	local _, firstNumber = iter.new(a):findMap(function(_k, s)
+		return tonumber(s)
+	end)
+
+	assert(firstNumber == 2)
+	```
+]=]
+function iter:findMap(f: (any, any) -> any)
+	local res = self:tryFold(true, function(_, key, value)
+		local x = f(key, value)
+		return if x == nil then true else controlFlow.Break({ key, x })
+	end)
+
+	if controlFlow.isBreak(res) then
+		return table.unpack(res.value)
+	end
+	return nil
 end
 
 --[=[
@@ -517,6 +577,40 @@ end
 function iter:next(): any
 	self:_next(self._lastKey)
 	return self:_getInputTuple()
+end
+
+--[=[
+	Reduces the elements to a single one, by repeatedly applying a reducing operation.
+
+	If the iterator is empty, returns `iter.None`; otherwise, returns the result of the reduction.
+
+	The reducing function is a closure with two arguments: an 'accumulator', and an element.For iterators
+	with at least one element, this is the same as [`fold`] with the first element of the iterator as the
+	initial accumulator value, folding every subsequent element into it.
+
+	# Example
+	```lua
+	local a = { 1, 2, ..., 10 }
+	local reduced = iter.new(a):reduce(function(acc, e)
+		return acc + e
+	end)
+	assert(reduced == 45)
+
+	-- Which is equivalent to doing it with `fold`:
+	local folded = iter.new(a):fold(0, function(acc, e)
+		return acc + e
+	end)
+	assert(reduced == folded)
+	```
+]=]
+function iter:reduce(f: (any, any) -> any): any
+	local _, first = self:next()
+
+	if first == nil then
+		return controlFlow.None
+	end
+
+	return self:fold(first, f)
 end
 
 --[=[

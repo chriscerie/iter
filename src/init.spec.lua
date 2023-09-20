@@ -118,6 +118,47 @@ return function()
 			end)
 		end)
 
+		describe("filter", function()
+			it("should filter and move values forward in an array", function()
+				local t = { 1, 2, 3 }
+				local result = iter.new(t)
+					:filterMap(function(_, value: number)
+						return if value % 2 == 0 then nil else -value
+					end)
+					:collect()
+
+				print(result)
+
+				expect(result[1]).to.be.equal(-1)
+				expect(result[2]).to.be.equal(-3)
+				expect(result[3]).to.be.equal(nil)
+			end)
+		end)
+
+		describe("findMap", function()
+			it("should find the first non-nil", function()
+				local a = { "lol", "hi", "2", "5" }
+
+				local i, firstNumber = iter.new(a):findMap(function(_, s)
+					return tonumber(s)
+				end)
+
+				expect(i).to.be.equal(3)
+				expect(firstNumber).to.be.equal(2)
+			end)
+
+			it("should return nil if all are nil", function()
+				local a = { "lol", "hi", "2", "5" }
+
+				local a, b = iter.new(a):findMap(function(s)
+					return nil
+				end)
+
+				expect(a).to.be.equal(nil)
+				expect(b).to.be.equal(nil)
+			end)
+		end)
+
 		describe("fold", function()
 			it("should accumulate numbers", function()
 				local a = { 1, 2, 3 }
@@ -254,6 +295,28 @@ return function()
 					end)
 
 				expect(countMap).to.be.equal(4)
+			end)
+		end)
+
+		describe("reduce", function()
+			it("should accumulate numbers", function()
+				local a = { 1, 2, 3 }
+
+				local sum = iter.new(a):reduce(function(acc, _, x)
+					return acc + x
+				end)
+
+				expect(sum).to.be.equal(6)
+			end)
+
+			it("should accumulate strings", function()
+				local numbers = { 0, 1, 2, 3, 4, 5 }
+
+				local result = iter.new(numbers):reduce(function(acc, _, x)
+					return `({acc} + {x})`
+				end)
+
+				expect(result).to.be.equal("(((((0 + 1) + 2) + 3) + 4) + 5)")
 			end)
 		end)
 

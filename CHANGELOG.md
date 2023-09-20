@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+* Added `filterMap`
+* Added `findMap`
+* Added `reduce`
 
 ## 0.1.4 (September 19, 2023)
 * Added `fold`

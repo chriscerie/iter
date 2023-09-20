@@ -4,7 +4,7 @@ local controlFlow = require(script.Parent.controlFlow)
 
 local map = {}
 
-function map.new(iter, new, f: (...any) -> ...any)
+function map.new(iter: any, new, f: (...any) -> ...any)
 	local newIter = new(iter._value, iter)
 
 	function newIter:next(): ...any
