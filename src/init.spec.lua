@@ -150,12 +150,12 @@ return function()
 			it("should return nil if all are nil", function()
 				local a = { "lol", "hi", "2", "5" }
 
-				local a, b = iter.new(a):findMap(function(s)
+				local key, value = iter.new(a):findMap(function()
 					return nil
 				end)
 
-				expect(a).to.be.equal(nil)
-				expect(b).to.be.equal(nil)
+				expect(key).to.be.equal(nil)
+				expect(value).to.be.equal(nil)
 			end)
 		end)
 
