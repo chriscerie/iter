@@ -1,6 +1,7 @@
 --!native
 --!strict
 
+local types = require(script.types)
 local controlFlow = require(script.controlFlow)
 local filter = require(script.filter)
 local filterMap = require(script.filterMap)
@@ -17,11 +18,11 @@ iter.__index = iter
 
 	@return iter
 ]=]
-function iter.new(value: { [any]: any })
+function iter.new<K, V>(value: { [K]: V }): types.Iter<K, V>
 	return iter._new(value)
 end
 
-function iter._new(value, prevIter: any?)
+function iter._new<K, V>(value: { [K]: V }, prevIter: any?): types.Iter<K, V>
 	assert(typeof(value) == "table", "iter expected table, got " .. typeof(value))
 
 	local self = setmetatable({
@@ -35,10 +36,10 @@ function iter._new(value, prevIter: any?)
 		self._asMut = prevIter._asMut
 	end
 
-	return self
+	return self :: any
 end
 
-function iter:_next(last)
+function iter._next<K, V>(self: types.Iter<K, V>, last)
 	local key, value = next(self._value, last)
 
 	if key == nil then
@@ -99,12 +100,13 @@ end
 	assert(next(iterator) == 3)
 	```
 ]=]
-function iter:all(f: (...any) -> boolean): boolean
+function iter.all<K, V>(self: types.Iter<K, V>, f)
 	local res = self:tryFold(true, function(_, ...)
 		if f(...) then
 			return true
 		end
-		return controlFlow.Break(true)
+		-- FIXME: handle controlflow type
+		return controlFlow.Break(true) :: any
 	end)
 
 	return not controlFlow.isBreak(res)
@@ -119,7 +121,7 @@ end
 
 	@return iter
 ]=]
-function iter:asMut()
+function iter.asMut<K, V>(self: types.Iter<K, V>)
 	self._asMut = true
 	return self
 end
@@ -168,10 +170,10 @@ end
 	assert(next(iterator) == 2)
 	```
 ]=]
-function iter:any(f: (...any) -> boolean): boolean
+function iter.any<K, V>(self: types.Iter<K, V>, f)
 	local hasAny = false
 
-	self:tryFold(true, function(_, ...)
+	self:tryFold(true, function(_, ...): boolean?
 		if f(...) then
 			hasAny = true
 			return nil
@@ -189,7 +191,7 @@ end
 	number of times it saw values. Note that [`next`] has to be called at least once even
 	if the iterator does not have any elements.
 ]=]
-function iter:count(): number
+function iter.count<K, V>(self: types.Iter<K, V>)
 	return self:fold(0, function(count: number)
 		return count + 1
 	end)
@@ -208,7 +210,7 @@ end
 	# Deviations
 	The returned table is frozen by default if [`asMut`] was never called.
 ]=]
-function iter:collect(): { [any]: any }
+function iter.collect<K, V>(self: types.Iter<K, V>)
 	local res = {}
 
 	self:tryFold(true, function(_, key, value)
@@ -231,7 +233,7 @@ end
 	do not affect the runtime.
 	* The returned table is frozen by default if [`asMut`] was never called.
 ]=]
-function iter:collectArray(): { any }
+function iter.collectArray<K, V>(self: types.Iter<K, V>)
 	local res = {}
 
 	self:tryFold(true, function(_, _, value)
@@ -254,7 +256,7 @@ end
 
 	@return iter
 ]=]
-function iter:filter(predicate: (any, any) -> boolean)
+function iter.filter<K, V>(self: types.Iter<K, V>, predicate)
 	return filter.new(self, iter._new, predicate)
 end
 
@@ -285,7 +287,7 @@ end
 	removed as long as the table is contiguous. The first time a non-array key is encountered (key
 	that jumps or non-numeric key), `filterMap` will act the same as `map`.
 ]=]
-function iter:filterMap(f: (any, any) -> any?)
+function iter.filterMap<K, V>(self: types.Iter<K, V>, f)
 	return filterMap.new(self, iter._new, f)
 end
 
@@ -299,16 +301,16 @@ end
 	`find()` is short-circuiting; in other words, it will stop processing as soon as the closure
 	returns `true`
 ]=]
-function iter:find(predicate: (any, any) -> boolean): ...any?
-	local res = self:tryFold(false, function(_, key, value)
+function iter.find<K, V>(self: types.Iter<K, V>, predicate)
+	local res = self:tryFold(false, function(_, key, value): boolean | controlFlow.Break
 		if predicate(key, value) then
-			return controlFlow.Break({ key, value })
+			return controlFlow.Break({ key, value } :: { K | V })
 		end
 		return false
 	end)
 
 	if controlFlow.isBreak(res) then
-		return table.unpack(res.value)
+		return table.unpack((res :: any).value)
 	end
 
 	return controlFlow.None
@@ -330,14 +332,14 @@ end
 	assert(firstNumber == 2)
 	```
 ]=]
-function iter:findMap(f: (any, any) -> any)
+function iter.findMap<K, V>(self: types.Iter<K, V>, f)
 	local res = self:tryFold(true, function(_, key, value)
 		local x = f(key, value)
 		return if x == nil then true else controlFlow.Break({ key, x })
 	end)
 
 	if controlFlow.isBreak(res) then
-		return table.unpack(res.value)
+		return table.unpack((res :: any).value)
 	end
 	return nil
 end
@@ -389,7 +391,7 @@ end
 	assert(result, "(((((0 + 1) + 2) + 3) + 4) + 5)");
 	```
 ]=]
-function iter:fold<T>(init: T, f: (T, ...any) -> T): T
+function iter.fold<K, V>(self: types.Iter<K, V>, init, f)
 	local accum = init
 	local next = { self:next() }
 	while next[1] ~= controlFlow.None do
@@ -424,9 +426,10 @@ end
 		end)
 	```
 ]=]
-function iter:forEach(f: (...any) -> ())
+function iter.forEach<K, V>(self: types.Iter<K, V>, f)
 	self:fold(nil, function(_, ...)
 		f(...)
+		return nil
 	end)
 end
 
@@ -489,10 +492,11 @@ end
 	6
 	```
 ]=]
-function iter:inspect(f: (...any) -> ())
+function iter.inspect<K, V>(self: types.Iter<K, V>, f)
 	for key, value in self do
 		f(self:_getInputTuple(key, value))
 	end
+	return self
 end
 
 --[=[
@@ -513,12 +517,12 @@ end
 	assert(iter.new(a).last() == 5)
 	```
 ]=]
-function iter:last(): ...any
-	local res = self:fold(true, function(_, ...)
+function iter.last<K, V>(self: types.Iter<K, V>)
+	local res = self:fold(nil, function(_, ...)
 		return { ... }
 	end)
 
-	return table.unpack(res)
+	return table.unpack(res or {})
 end
 
 --[=[
@@ -536,7 +540,7 @@ end
 
 	@return iter
 ]=]
-function iter:map(f: (...any) -> ...any)
+function iter.map<K, V>(self: types.Iter<K, V>, f)
 	return map.new(self, iter._new, f)
 end
 
@@ -548,7 +552,7 @@ end
 
 	@return iter
 ]=]
-function iter:mapWhile(predicate: (...any) -> ...any)
+function iter.mapWhile<K, V>(self: types.Iter<K, V>, predicate)
 	return mapWhile.new(self, iter._new, predicate)
 end
 
@@ -574,7 +578,7 @@ end
 	assert(nil == iter.next())
 	```
 ]=]
-function iter:next(): any
+function iter.next<K, V>(self: types.Iter<K, V>)
 	self:_next(self._lastKey)
 	return self:_getInputTuple()
 end
@@ -584,26 +588,26 @@ end
 
 	If the iterator is empty, returns `iter.None`; otherwise, returns the result of the reduction.
 
-	The reducing function is a closure with two arguments: an 'accumulator', and an element.For iterators
+	The reducing function is a closure with two arguments: an 'accumulator', and an element. For iterators
 	with at least one element, this is the same as [`fold`] with the first element of the iterator as the
 	initial accumulator value, folding every subsequent element into it.
 
 	# Example
 	```lua
 	local a = { 1, 2, ..., 10 }
-	local reduced = iter.new(a):reduce(function(acc, e)
-		return acc + e
+	local reduced = iter.new(a):reduce(function(acc, _key, value)
+		return acc + value
 	end)
 	assert(reduced == 45)
 
 	-- Which is equivalent to doing it with `fold`:
-	local folded = iter.new(a):fold(0, function(acc, e)
-		return acc + e
+	local folded = iter.new(a):fold(0, function(acc, _key, value)
+		return acc + value
 	end)
 	assert(reduced == folded)
 	```
 ]=]
-function iter:reduce(f: (any, any) -> any): any
+function iter.reduce<K, V>(self: types.Iter<K, V>, f)
 	local _, first = self:next()
 
 	if first == nil then
@@ -620,7 +624,7 @@ end
 	happens first). The returned iterator is a prefix of length `n` if the original iterator contains at least
 	`n` elements, otherwise it contains all of the (fewer than `n`) elements of the original iterator.
 ]=]
-function iter:take(n: number)
+function iter.take<K, V>(self: types.Iter<K, V>, n)
 	return take.new(self, iter._new, n)
 end
 
@@ -638,7 +642,7 @@ end
 
 	Folding is useful whenever you have a collection of something, and want to produce a single value from it.
 ]=]
-function iter:tryFold<T>(init: T, f: (T, ...any) -> T?): T?
+function iter.tryFold<K, V>(self: types.Iter<K, V>, init, f)
 	local accum = init
 	local next = { self:next() }
 	while next[1] ~= controlFlow.None do
@@ -660,7 +664,7 @@ function iter:tryFold<T>(init: T, f: (T, ...any) -> T?): T?
 	return accum
 end
 
-function iter:_getInputTuple(key, value)
+function iter._getInputTuple<K, V>(self: types.Iter<K, V>, key, value)
 	key = key or self._lastKey
 
 	-- This can happen if the iterator is already consumed
@@ -674,7 +678,7 @@ function iter:_getInputTuple(key, value)
 		warn(`'iter' did not find value for key '{key}' in table. Did the input table mutate?`)
 	end
 
-	if value == controlFlow.Nil then
+	if value :: any == controlFlow.Nil then
 		value = nil
 	end
 

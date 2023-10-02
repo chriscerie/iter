@@ -1,5 +1,7 @@
 --!native
 --!strict
+local types = require(script.Parent.types)
+
 local filterMap = {}
 
 local function isContiguous(index: number?, currentKey: any)
@@ -10,7 +12,7 @@ local function isContiguous(index: number?, currentKey: any)
 	return index == currentKey - 1
 end
 
-function filterMap.new(iter: any, new, f: (...any) -> ...any)
+function filterMap.new<K, V, N>(iter: types.Iter<K, V>, new: any, f: (key: K, value: V) -> N?)
 	local newIter = new(iter._value, iter)
 
 	-- Used to check whether table is still a contiguous array

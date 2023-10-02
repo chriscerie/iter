@@ -8,7 +8,7 @@ return function()
 		it("should generate new iterator of transformed values", function()
 			local t = { 1, 2, 3 }
 			local result = iter.new(t)
-				:map(function(_, value: number)
+				:map(function(_, value)
 					return value * 2
 				end)
 				:collect()

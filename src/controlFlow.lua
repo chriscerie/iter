@@ -7,6 +7,8 @@ controlFlow.None = setmetatable({}, {
 	end,
 })
 
+export type None = typeof(controlFlow.None)
+
 -- Since we're not wrapping non-nones as somes, we need this to differentiate between some(none) and none
 -- This represents none
 controlFlow.Nil = setmetatable({}, {
@@ -14,6 +16,8 @@ controlFlow.Nil = setmetatable({}, {
 		return `Symbol(Nil)`
 	end,
 })
+
+export type Nil = typeof(controlFlow.Nil)
 
 local breakMetatable = {
 	__tostring = function(self)
@@ -29,6 +33,8 @@ function controlFlow.Break(value: any)
 		value = value,
 	}, breakMetatable)
 end
+
+export type Break = typeof(controlFlow.Break(nil))
 
 function controlFlow.isBreak(value: any)
 	return getmetatable(value) == breakMetatable

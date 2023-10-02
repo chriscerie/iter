@@ -1,11 +1,13 @@
 --!native
 --!strict
+local types = require(script.Parent.types)
+
 local filter = {}
 
-function filter.new(iter, new, predicate: (any, any) -> boolean)
+function filter.new<K, V>(iter: types.Iter<K, V>, new: any, predicate: (key: K, value: any) -> boolean)
 	local newIter = new(iter._value, iter)
 
-	function newIter:next(): any
+	function newIter:next()
 		return iter:find(predicate)
 	end
 

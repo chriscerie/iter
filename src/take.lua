@@ -1,10 +1,12 @@
 --!native
 --!strict
+local types = require(script.Parent.types)
+
 local controlFlow = require(script.Parent.controlFlow)
 
 local take = {}
 
-function take.new(iter, new, n: number)
+function take.new<K, V, N>(iter: types.Iter<K, V>, new, n: number)
 	local newIter = new(iter._value, iter)
 
 	function newIter:next(): ...any

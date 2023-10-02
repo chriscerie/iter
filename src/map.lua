@@ -1,10 +1,12 @@
 --!native
 --!strict
+local types = require(script.Parent.types)
+
 local controlFlow = require(script.Parent.controlFlow)
 
 local map = {}
 
-function map.new(iter: any, new, f: (...any) -> ...any)
+function map.new<K, V, N>(iter: types.Iter<K, V>, new: any, f: (key: K, value: V) -> N)
 	local newIter = new(iter._value, iter)
 
 	function newIter:next(): ...any
